@@ -106,6 +106,31 @@ opacity:.95}
 @keyframes letterIn{to{opacity:1;transform:none}}
 @keyframes float{50%{transform:translateY(-8px)}}
 @keyframes breathe{50%{opacity:.3;transform:translateY(4px)}}
+/* ---- правки: большая буква "П" в приглашении, как "В" в главе 1 ---- */
+.hero .invite.dropcap:first-letter{font-size:58px;color:var(--red);float:left;line-height:.7;padding:.08em .12em 0 0}
+
+/* ---- правки: цвет подзаголовков "Место действия" / "Как всё пройдёт" как у "Глава 2" ---- */
+.sub-highlight{color:#fff9f1!important}
+
+/* ---- правки: разделитель-рисунок между главами ---- */
+.chapter-divider{width:100%;display:block}
+
+/* ---- правки: заголовок календаря в стиле вложения (месяц / число / год) ---- */
+.calendar-head2{display:flex;align-items:baseline;justify-content:center;gap:14px;margin-bottom:6px}
+.calendar-head2 .ch-month{font-size:24px;letter-spacing:.08em;color:var(--ink)}
+.calendar-head2 .ch-num{font-size:44px;color:var(--red);line-height:1}
+.calendar-head2 .ch-year{font-size:20px;color:var(--ink);opacity:.75}
+
+/* ---- правки: отметка даты рисунком Photo5.png ---- */
+.calendar .day{position:relative}
+.calendar .day-mark{position:absolute;width:30px;left:50%;bottom:78%;transform:translateX(-50%);pointer-events:none}
+
+/* ---- правки: анкета внутри карточки "Просьба для дорогих гостей" (Глава 5) ---- */
+.rsvp-phrase{text-align:center;font-size:18px;line-height:1.4;margin:6px 0 16px}
+.gift-card .form{margin-top:6px}
+.gift-card .form label{text-align:left}
+.gift-card .form button{border:1px solid rgba(255,255,255,.4)}
+
 @media (max-width:430px){
  .section{padding-left:19px;padding-right:19px}
  .hero .names{font-size:54px}
@@ -135,18 +160,17 @@ opacity:.95}
     <div class="flip"><div class="card"><div class="num" id="cdMinutes">00</div></div><small>минут</small></div>
     <div class="flip"><div class="card"><div class="num" id="cdSeconds">00</div></div><small>секунд</small></div>
   </div>
-  <p class="invite">Приглашаем вас на пир, тучения<br>испробовать да песни испеть</p>
+  <p class="invite dropcap">Приглашаем вас на пир, тучения<br>испробовать да песни испеть</p>
   <div class="hero-book"><img src="assets/Photo3.png" alt=""></div>
   <div class="scroll">↓</div>
 </section>
 
-<div class="pattern"></div>
+<img class="chapter-divider" src="assets/Photo21.png" alt="">
 
 <section class="section paper reveal">
-  <div class="orn left"><img src="assets/Photo1.png" alt=""></div>
-  <div class="orn right"><img src="assets/Photo2.png" alt=""></div>
+  <div class="orn left" style="top:6px;width:110px"><img src="assets/Photo1.png" alt=""></div>
+  <div class="orn right" style="top:6px;width:105px"><img src="assets/Photo2.png" alt=""></div>
   <div class="chapter-title">
-    <div class="chapter-no">Александр и Лилия</div>
     <h2>Глава 1.</h2><div class="sub">Время</div>
   </div>
   <p class="lead dropcap">В месте нашей свадьбы быть<br>песнями, танцами весёлыми<br>да гуляньями широкими!</p>
@@ -154,15 +178,21 @@ opacity:.95}
   <img class="divider" src="assets/Photo4.png" alt="">
 </section>
 
+<img class="chapter-divider" src="assets/Photo21.png" alt="">
+
 <section class="section paper reveal">
-  <div class="chapter-title"><div class="chapter-no">18 сентября 2026</div><h2>Дата</h2></div>
+  <div class="chapter-title"><h2>Дата</h2></div>
   <div class="calendar">
-    <div class="month">СЕНТЯБРЬ 2026</div>
+    <div class="calendar-head2">
+      <span class="ch-month">Сентябрь</span>
+      <span class="ch-num">18</span>
+      <span class="ch-year">2026</span>
+    </div>
     <div class="week"><span>Пн</span><span>Вт</span><span>Ср</span><span>Чт</span><span>Пт</span><span>Сб</span><span>Вс</span></div>
     <div class="days">
       <span class="day">1</span><span class="day">2</span><span class="day">3</span><span class="day">4</span><span class="day">5</span><span class="day">6</span><span class="day">7</span>
       <span class="day">8</span><span class="day">9</span><span class="day">10</span><span class="day">11</span><span class="day">12</span><span class="day">13</span><span class="day">14</span>
-      <span class="day">15</span><span class="day">16</span><span class="day">17</span><span class="day hit">18</span><span class="day">19</span><span class="day">20</span><span class="day">21</span>
+      <span class="day">15</span><span class="day">16</span><span class="day">17</span><span class="day hit">18<img class="day-mark" src="assets/Photo5.png" alt=""></span><span class="day">19</span><span class="day">20</span><span class="day">21</span>
       <span class="day">22</span><span class="day">23</span><span class="day">24</span><span class="day">25</span><span class="day">26</span><span class="day">27</span><span class="day">28</span>
       <span class="day">29</span><span class="day">30</span><span class="day">31</span>
     </div>
@@ -170,9 +200,25 @@ opacity:.95}
   <img class="divider" src="assets/Photo6.png" alt="">
 </section>
 
+<img class="chapter-divider" src="assets/Photo21.png" alt="">
+
 <section class="section red reveal">
-  <div class="chapter-title"><div class="chapter-no">16:00 — 23:00</div><h2>Глава 3.</h2><div class="sub">Как всё пройдёт</div></div>
+  <div class="place-card">
+    <div class="chapter-title"><h2>Глава 2.</h2><div class="sub sub-highlight">Место действия</div></div>
+    <div class="place-text">Загс: с. Вольно-Надеждинское,<br>ул. Пушкина, д. 57</div>
+    <a class="map-link" target="_blank" rel="noopener" href="https://yandex.ru/maps/org/zags/11016756415/?ll=131.992178%2C43.371740&z=17">Открыть карту загса</a>
+    <div class="place-text" style="margin-top:30px">Банкет мы проведём на даче по адресу:<br>Соловей Ключ, СНТ Соловушка,<br>участок 85</div>
+    <a class="map-link" target="_blank" rel="noopener" href="https://yandex.ru/maps/11409/primorsky-krai/house/snt_solovushka_85/ZUoEaAdpT0cFVUJuYGJ1dXRnYgo=/?ll=132.098289%2C43.448462&mode=search&sll=131.992178%2C43.371740&sspn=0.011802%2C0.007130&text=%D0%A1%D0%BE%D0%BB%D0%BE%D0%B2%D0%B5%D0%B9%20%D0%9A%D0%BB%D1%8E%D1%87%2C%20%D0%A1%D0%9D%D0%A2%20%D0%A1%D0%BE%D0%BB%D0%BE%D0%B2%D1%83%D1%88%D0%BA%D0%B0%2C%D1%83%D1%87%D0%B0%D1%81%D1%82%D0%BE%D0%BA%2085&z=17">Открыть карту банкета</a>
+  </div>
+</section>
+
+<img class="chapter-divider" src="assets/Photo21.png" alt="">
+
+<section class="section red reveal">
+  <div class="chapter-title"><div class="chapter-no">10:20 — 23:00</div><h2>Глава 3.</h2><div class="sub sub-highlight">Как всё пройдёт</div></div>
   <div class="timeline">
+    <article class="event"><div class="time">10:20</div><div class="dot"></div><div class="copy"><h3>Свадьба</h3><p>Торжественное вступление в законный брак</p></div></article>
+    <article class="event"><div class="time">16:00</div><div class="dot"></div><div class="copy"><h3>Сбор честного народа</h3><p>Встречаем гостей</p></div></article>
     <article class="event"><div class="time">16:00</div><div class="dot"></div><div class="copy"><h3>Пир на весь мир</h3><p>Будем угощаться густно да душевно,<br>да забавы весёлые</p></div></article>
     <article class="event"><div class="time">23:00</div><div class="dot"></div><div class="copy"><h3>Завершение гуляний</h3><p>Чаепитие с русским самоваром,<br>да с пирогами сладкими</p></div></article>
   </div>
@@ -183,7 +229,7 @@ opacity:.95}
   </div>
 </section>
 
-<div class="pattern"></div>
+<img class="chapter-divider" src="assets/Photo21.png" alt="">
 
 <section class="section paper reveal">
   <div class="orn left"><img src="assets/Photo14.png" alt=""></div>
@@ -197,6 +243,8 @@ opacity:.95}
     <img src="assets/Photo16.png" alt="Мужской образ">
   </div>
 </section>
+
+<img class="chapter-divider" src="assets/Photo21.png" alt="">
 
 <section class="section red reveal">
   <div class="orn left" style="width:100px;top:30px;opacity:.8"><img src="assets/Photo8.png" alt=""></div>
@@ -213,55 +261,34 @@ opacity:.95}
       <h3>Встреча сказная</h3>
       <p>Если путь ваш дальний и в ночь нуждаетесь, мы поможем с приютом.</p>
     </article>
-    <article class="gift-card">
+    <article class="gift-card full" id="rsvp">
       <img src="assets/Photo19.png" alt="">
       <h3>Просьба для дорогих гостей</h3>
-      <p>Дайте знать о вашем решении до 10 сентября 2026 года</p>
+      <p class="rsvp-phrase">Дайте знать о вашем решении до 10 сентября 2026 года</p>
+      <form class="form" id="rsvpForm">
+        <label for="name">Ваше имя</label>
+        <input id="name" name="name" required placeholder="Имя и фамилия">
+        <label for="attendance">Вы будете с нами?</label>
+        <select id="attendance" name="attendance" required>
+          <option value="">Выберите ответ</option>
+          <option>Да, с радостью!</option>
+          <option>К сожалению, не смогу</option>
+        </select>
+        <label for="wish">Пожелания</label>
+        <textarea id="wish" name="wish" placeholder="Оставьте несколько тёплых слов..."></textarea>
+        <button type="submit">Сообщить о присутствии</button>
+        <div class="status" id="status"></div>
+      </form>
     </article>
   </div>
 </section>
 
-<div class="pattern"></div>
-
-<section class="section red reveal">
-  <div class="place-card">
-    <div class="chapter-title"><h2>Глава 2.</h2><div class="sub">Место действия</div></div>
-    <div class="place-text">Загс: с. Вольно-Надеждинское,<br>ул. Пушкина, д. 57</div>
-  <a class="map-link" target="_blank" rel="noopener" href="https://yandex.ru/maps/org/zags/11016756415/?ll=131.992178%2C43.371740&z=17"
-    <div class="place-text" style="margin-top:14px">Банкет мы проведём на даче по адресу:<br>Соловей Ключ, СНТ Соловушка,<br>участок 85</div>>Открыть карту</a>
-    <a class="map-link" target="_blank" rel="noopener" href="https://yandex.ru/maps/11409/primorsky-krai/house/snt_solovushka_85/ZUoEaAdpT0cFVUJuYGJ1dXRnYgo=/?ll=132.098289%2C43.448462&mode=search&sll=131.992178%2C43.371740&sspn=0.011802%2C0.007130&text=%D0%A1%D0%BE%D0%BB%D0%BE%D0%B2%D0%B5%D0%B9%20%D0%9A%D0%BB%D1%8E%D1%87%2C%20%D0%A1%D0%9D%D0%A2%20%D0%A1%D0%BE%D0%BB%D0%BE%D0%B2%D1%83%D1%88%D0%BA%D0%B0%2C%D1%83%D1%87%D0%B0%D1%81%D1%82%D0%BE%D0%BA%2085&z=17">Открыть карту</a>
-  </div>
-</section>
-
-<div class="pattern"></div>
-
-<section class="section paper reveal rsvp" id="rsvp">
-  <div class="chapter-title"><h2>Глава 6.</h2><div class="sub">Просьба для дорогих гостей</div></div>
-  <p class="lead dropcap">Дайте знать о вашем решении до 10 сентября 2026 года</p>
-  <form class="form" id="rsvpForm">
-    <label for="name">Ваше имя</label>
-    <input id="name" name="name" required placeholder="Имя и фамилия">
-    <label for="attendance">Вы будете с нами?</label>
-    <select id="attendance" name="attendance" required>
-      <option value="">Выберите ответ</option>
-      <option>Да, с радостью!</option>
-      <option>К сожалению, не смогу</option>
-    </select>
-    <label for="guests">Количество гостей</label>
-    <select id="guests" name="guests">
-      <option>1</option><option>2</option><option>3</option><option>4</option>
-    </select>
-    <label for="wish">Пожелания</label>
-    <textarea id="wish" name="wish" placeholder="Оставьте несколько тёплых слов..."></textarea>
-    <button type="submit">Отправить ответ</button>
-    <div class="status" id="status"></div>
-  </form>
-</section>
+<img class="chapter-divider" src="assets/Photo21.png" alt="">
 
 <footer class="footer paper reveal">
   <img src="assets/Photo20.png" alt="" style="width:95px;max-height:70px;object-fit:contain;opacity:.8">
   <div style="margin-top:15px">Дорогие наши гости, просим запомнить дату эту, чтобы мы смогли поделиться с ней с нашим потомством</div>
-  <div style="color:var(--red);margin-top:8px">Александр и Лилия</div>
+  <div style="color:var(--red);margin-top:8px;font-size:26px">Александр и Лилия</div>
 </footer>
 
 </main>
