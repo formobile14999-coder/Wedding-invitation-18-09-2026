@@ -1,601 +1,318 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Лилия &amp; Александр — Приглашение на свадьбу</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Yeseva+One&family=PT+Serif:ital,wght@0,400;0,700;1,400&family=Great+Vibes&display=swap" rel="stylesheet">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#a92822">
+<title>Александр и Лилия — 18 сентября 2026</title>
 <style>
-  :root{
-    --red-dark:#6f1416;
-    --red:#9c2222;
-    --red-bright:#b6272a;
-    --cream:#fbf2e3;
-    --white:#fffaf1;
-    --gold:#c9a13a;
-    --gold-light:#e7c877;
-    --ink:#3a1210;
-    --shadow: 0 10px 30px rgba(80,10,10,0.18);
-  }
-  *{box-sizing:border-box; margin:0; padding:0;}
-  html,body{
-    background:var(--red-dark);
-    font-family:'PT Serif', serif;
-    color:var(--ink);
-    overflow-x:hidden;
-  }
-  body{
-    width:100%;
-    display:flex;
-    justify-content:center;
-    background:linear-gradient(180deg, var(--red-dark), #4c0c0d 90%);
-  }
-  .phone{
-    width:100%;
-    max-width:430px;
-    min-height:100vh;
-    background:var(--cream);
-    position:relative;
-    box-shadow: var(--shadow);
-    overflow:hidden;
-  }
-
-  /* ---------- page fade-in ---------- */
-  .phone{ opacity:0; animation: pageFade 1.4s ease forwards; }
-  @keyframes pageFade{ to{opacity:1;} }
-
-  /* ---------- ornament pattern strips ---------- */
-  .ornament-strip{
-    height:26px;
-    background-image: repeating-linear-gradient(45deg, var(--gold) 0 3px, transparent 3px 10px),
-                       repeating-linear-gradient(-45deg, var(--gold) 0 3px, transparent 3px 10px);
-    background-color:var(--red);
-    opacity:0.9;
-  }
-
-  section{
-    position:relative;
-    padding:52px 26px 46px;
-    opacity:0;
-    transform:translateY(28px);
-    transition: opacity .9s ease, transform .9s ease;
-  }
-  section.visible{ opacity:1; transform:translateY(0); }
-
-  .section-dark{
-    background: radial-gradient(circle at 20% 0%, #7c1a1c, var(--red-dark) 70%);
-    color:var(--white);
-  }
-  .section-light{ background:var(--cream); }
-  .section-white{ background:var(--white); }
-
-  /* chapter label */
-  .chapter{
-    font-family:'Yeseva One', serif;
-    font-size:15px;
-    letter-spacing:.14em;
-    text-transform:uppercase;
-    color:var(--gold);
-    margin-bottom:4px;
-    opacity:.9;
-  }
-  .chapter-title{
-    font-family:'Yeseva One', serif;
-    font-size:26px;
-    line-height:1.15;
-    margin-bottom:18px;
-    color:inherit;
-  }
-  .section-dark .chapter-title{ color:var(--gold-light); }
-  .section-light .chapter-title, .section-white .chapter-title{ color:var(--red-dark); }
-
-  p{ font-size:15.5px; line-height:1.65; }
-
-  /* drop cap first letter of paragraphs, echoing invitation style */
-  .dropcap::first-letter{
-    font-family:'Yeseva One', serif;
-    font-size:2.6em;
-    float:left;
-    line-height:0.85;
-    padding-right:8px;
-    color:var(--gold);
-  }
-
-  /* ---------- HERO ---------- */
-  .hero{
-    padding:0;
-    min-height:100vh;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    background:
-      radial-gradient(circle at 50% 15%, #8a1b1d 0%, var(--red-dark) 55%, #430a0b 100%);
-    overflow:hidden;
-    opacity:1; transform:none;
-  }
-  .hero-orn-top, .hero-orn-bottom{
-    position:absolute; left:0; right:0; width:100%; opacity:.85;
-  }
-  .hero-orn-top{ top:0; }
-  .hero-orn-bottom{ bottom:0; transform:scaleY(-1); }
-
-  .hero-inner{ position:relative; z-index:2; padding:60px 20px; }
-
-  .hero-eyebrow{
-    font-family:'PT Serif', serif;
-    font-style:italic;
-    letter-spacing:.35em;
-    text-transform:uppercase;
-    font-size:11px;
-    color:var(--gold-light);
-    margin-bottom:22px;
-    opacity:0;
-    animation: fadeUp 1s ease .3s forwards;
-  }
-
-  .names{
-    font-family:'Yeseva One', serif;
-    font-size:44px;
-    color:var(--white);
-    line-height:1.25;
-    text-shadow: 0 2px 18px rgba(0,0,0,.35);
-  }
-  .names .letter{
-    display:inline-block;
-    opacity:0;
-    transform: translateY(14px) rotateX(60deg);
-    animation: letterIn .6s cubic-bezier(.2,.8,.2,1) forwards;
-  }
-  @keyframes letterIn{
-    to{ opacity:1; transform:translateY(0) rotateX(0deg);}
-  }
-  .amp{
-    display:block;
-    font-family:'Great Vibes', cursive;
-    font-size:52px;
-    color:var(--gold);
-    margin:6px 0;
-    opacity:0;
-    animation: fadeUp 1s ease 1.6s forwards;
-  }
-
-  .hero-date{
-    margin-top:26px;
-    font-family:'PT Serif', serif;
-    letter-spacing:.18em;
-    font-size:15px;
-    color:var(--gold-light);
-    opacity:0;
-    animation: fadeUp 1s ease 2s forwards;
-  }
-
-  @keyframes fadeUp{
-    from{opacity:0; transform:translateY(14px);}
-    to{opacity:1; transform:translateY(0);}
-  }
-
-  .scroll-hint{
-    margin-top:40px;
-    font-size:11px;
-    letter-spacing:.3em;
-    text-transform:uppercase;
-    color:var(--gold-light);
-    opacity:0;
-    animation: fadeUp 1s ease 2.4s forwards, bob 2.2s ease-in-out 3.4s infinite;
-  }
-  @keyframes bob{ 0%,100%{transform:translateY(0);} 50%{transform:translateY(6px);} }
-
-  /* ---------- decorative floral svg tint ---------- */
-  .flora{ position:absolute; opacity:.9; }
-
-  /* ---------- flip clock ---------- */
-  .flip-wrap{
-    display:flex;
-    justify-content:center;
-    gap:10px;
-    margin:26px 0 6px;
-    flex-wrap:wrap;
-  }
-  .flip-unit{ text-align:center; }
-  .flip-card{
-    position:relative;
-    width:58px;
-    height:70px;
-    perspective:300px;
-    margin:0 auto;
-  }
-  .flip-digit{
-    position:absolute; inset:0;
-    background:linear-gradient(180deg, var(--white), var(--cream));
-    border-radius:8px;
-    border:1px solid var(--gold);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-family:'Yeseva One', serif;
-    font-size:30px;
-    color:var(--red-dark);
-    box-shadow: 0 6px 14px rgba(0,0,0,.25);
-  }
-  .flip-digit::after{
-    content:'';
-    position:absolute; left:0; right:0; top:50%;
-    height:1px;
-    background:rgba(0,0,0,.15);
-  }
-  .flip-digit.flipping{ animation: flipDown .55s ease; }
-  @keyframes flipDown{
-    0%{ transform: rotateX(0deg);}
-    50%{ transform: rotateX(-90deg);}
-    100%{ transform: rotateX(0deg);}
-  }
-  .flip-label{
-    margin-top:8px;
-    font-size:10px;
-    letter-spacing:.18em;
-    text-transform:uppercase;
-    color:var(--gold-light);
-  }
-
-  /* ---------- calendar ---------- */
-  .calendar{
-    background:var(--white);
-    border:1px solid var(--gold);
-    border-radius:10px;
-    padding:16px;
-    margin-top:22px;
-    box-shadow: var(--shadow);
-  }
-  .calendar-head{
-    display:flex; justify-content:space-between; align-items:baseline;
-    font-family:'Yeseva One', serif; color:var(--red-dark);
-    margin-bottom:10px; font-size:15px;
-  }
-  .calendar-grid{
-    display:grid; grid-template-columns:repeat(7,1fr); gap:6px;
-    text-align:center; font-size:13px; color:var(--ink);
-  }
-  .calendar-grid .dow{ color:var(--gold); font-size:11px; font-weight:700; }
-  .calendar-grid .marked{
-    background:var(--red); color:#fff; border-radius:50%;
-    width:24px; height:24px; line-height:24px; margin:0 auto;
-    box-shadow:0 0 0 3px rgba(156,34,34,.18);
-  }
-
-  /* ---------- timeline ---------- */
-  .timeline{ margin-top:20px; }
-  .t-item{
-    display:flex; gap:14px; margin-bottom:22px; position:relative;
-  }
-  .t-time{
-    font-family:'Yeseva One', serif;
-    font-size:17px;
-    color:var(--gold-light);
-    min-width:64px;
-  }
-  .section-light .t-time, .section-white .t-time{ color:var(--red); }
-  .t-dot{
-    width:9px; height:9px; border-radius:50%;
-    background:var(--gold); margin-top:6px; flex-shrink:0;
-  }
-  .t-line{
-    position:absolute; left:76px; top:20px; bottom:-22px; width:1px;
-    background:var(--gold); opacity:.5;
-  }
-  .t-item:last-child .t-line{ display:none; }
-  .t-body h4{ font-family:'Yeseva One',serif; font-size:15px; margin-bottom:3px; }
-  .t-body p{ font-size:13.5px; opacity:.9; }
-
-  /* ---------- address cards ---------- */
-  .card{
-    background:var(--white);
-    border-radius:12px;
-    padding:18px 18px;
-    margin-top:16px;
-    box-shadow:var(--shadow);
-    border:1px solid rgba(201,161,58,.4);
-  }
-  .card h4{
-    font-family:'Yeseva One', serif;
-    color:var(--red-dark);
-    font-size:16px;
-    margin-bottom:6px;
-  }
-  .card p{ font-size:14px; color:var(--ink); }
-  .card a.map-link{
-    display:inline-block;
-    margin-top:10px;
-    font-size:12.5px;
-    letter-spacing:.08em;
-    text-transform:uppercase;
-    color:var(--red);
-    border-bottom:1px solid var(--gold);
-    text-decoration:none;
-  }
-
-  /* ---------- dress code palette ---------- */
-  .palette{ display:flex; gap:12px; margin-top:18px; justify-content:center; }
-  .swatch{
-    width:44px; height:44px; border-radius:50%;
-    border:3px solid var(--white);
-    box-shadow:0 4px 10px rgba(0,0,0,.25);
-  }
-
-  /* ---------- rsvp ---------- */
-  .rsvp-box{
-    text-align:center;
-    background:var(--white);
-    border-radius:14px;
-    padding:22px 18px;
-    margin-top:18px;
-    box-shadow:var(--shadow);
-  }
-  .rsvp-box .until{
-    font-family:'Yeseva One', serif;
-    color:var(--red);
-    font-size:19px;
-    margin-bottom:6px;
-  }
-  .contact-btn{
-    display:inline-block;
-    margin-top:14px;
-    background:var(--red);
-    color:var(--white);
-    padding:12px 26px;
-    border-radius:30px;
-    font-family:'Yeseva One', serif;
-    font-size:14px;
-    text-decoration:none;
-    box-shadow:var(--shadow);
-    transition: transform .25s ease;
-  }
-  .contact-btn:active{ transform:scale(.96); }
-
-  /* ---------- footer ---------- */
-  .footer{
-    text-align:center;
-    padding:50px 24px 60px;
-    background:var(--red-dark);
-    color:var(--gold-light);
-  }
-  .footer .amp2{
-    font-family:'Great Vibes', cursive;
-    font-size:38px;
-    color:var(--gold);
-    display:block;
-    margin:10px 0 14px;
-  }
-  .footer p{ font-size:13.5px; color:var(--white); opacity:.85; }
-
-  .divider{
-    width:60px; height:2px; background:var(--gold);
-    margin:18px auto; opacity:.7;
-  }
-  .center{ text-align:center; }
+@font-face{font-family:TDTeremok;src:url("TDTeremok.woff") format("woff");font-display:swap}
+:root{
+  --red:#a92b25;--red2:#8f1f1b;--cream:#fffdf8;--ink:#17120f;
+  --pattern-size:48px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;background:#f6efe6}
+body{margin:0;background:#f6efe6;color:var(--ink);font-family:TDTeremok,Georgia,serif;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.045;background:radial-gradient(#000 0.5px,transparent .6px);background-size:5px 5px;z-index:20}
+a{color:inherit}
+.page{width:min(100%,620px);margin:auto;background:var(--cream);box-shadow:0 0 60px #5b23161a;overflow:hidden}
+.section{position:relative;padding:52px 26px}
+.paper{background:var(--cream)}
+.red{background:linear-gradient(145deg,#b22e27,#8f201b);color:#fff9f1}
+.pattern{height:17px;background-color:var(--red);background-image:
+repeating-linear-gradient(45deg,transparent 0 8px,#fff8ed 8px 10px,transparent 10px 18px),
+repeating-linear-gradient(-45deg,transparent 0 8px,#fff8ed 8px 10px,transparent 10px 18px);
+opacity:.95}
+.pattern.thin{height:12px}
+.orn{position:absolute;pointer-events:none;opacity:.92}
+.orn img{width:100%;display:block}
+.orn.left{left:-4px;top:32px;width:125px}.orn.right{right:-8px;top:35px;width:120px}
+.kicker{letter-spacing:.12em;text-transform:uppercase;font-size:13px;text-align:center;opacity:.75}
+.hero{min-height:100svh;display:flex;flex-direction:column;justify-content:center;text-align:center;padding:46px 28px 32px}
+.hero .names{font-size:clamp(46px,13vw,78px);line-height:.9;color:var(--red);animation:letters 1.7s both}
+.hero .and{font-size:27px;margin:13px 0;opacity:.8}
+.hero .date{font-size:26px;letter-spacing:.12em;margin-top:18px}
+.hero .invite{font-size:20px;line-height:1.45;margin:32px auto 0;max-width:390px}
+.hero-book{width:58%;max-width:280px;margin:28px auto 0;animation:float 5s ease-in-out infinite}
+.hero-book img{width:100%;filter:drop-shadow(0 18px 14px #0002)}
+.scroll{margin-top:32px;font-size:12px;letter-spacing:.14em;opacity:.55;animation:breathe 2.4s ease-in-out infinite}
+.chapter{padding-top:68px;padding-bottom:64px}
+.chapter-title{text-align:center;margin:0 auto 30px;position:relative;z-index:2}
+.chapter-title .chapter-no{font-size:17px;color:var(--red);letter-spacing:.05em}
+.chapter-title h2{font-size:38px;line-height:.95;margin:5px 0 0;font-weight:400}
+.chapter-title .sub{font-size:22px;color:var(--red);margin-top:3px}
+.lead{font-size:20px;line-height:1.42;text-align:left;max-width:480px;margin:0 auto}
+.lead.dropcap:first-letter{font-size:58px;color:var(--red);float:left;line-height:.7;padding:.08em .12em 0 0}
+.flower-row{display:flex;justify-content:space-between;align-items:center;margin:28px -10px 5px}
+.flower-row img{width:31%;max-height:155px;object-fit:contain}
+.book{width:72%;margin:25px auto 0;display:block}
+.divider{width:72%;height:auto;display:block;margin:25px auto}
+.calendar{margin:22px auto 0;text-align:center;max-width:440px}
+.calendar .month{font-size:32px;letter-spacing:.12em;color:var(--red)}
+.calendar .week,.calendar .days{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-top:12px;font-size:17px}
+.calendar .week{font-size:12px;opacity:.6}
+.calendar .day{padding:6px 0;position:relative}
+.calendar .day.hit{color:#fff;background:var(--red);border-radius:50%;font-weight:bold}
+.calendar .day.hit:after{content:"";position:absolute;inset:-8px;border:1px solid #a92b2540;border-radius:50%}
+.countdown{margin:34px auto 0;display:grid;grid-template-columns:repeat(4,1fr);gap:8px;max-width:480px}
+.flip{perspective:700px;text-align:center}
+.flip .card{position:relative;height:64px;border-radius:7px;background:#17120f;color:#fff;overflow:hidden;box-shadow:0 8px 18px #0002}
+.flip .num{font-family:TDTeremok,Georgia,serif;font-size:35px;line-height:64px}
+.flip .card:before{content:"";position:absolute;left:0;right:0;top:50%;height:1px;background:#fff3;z-index:2}
+.flip small{display:block;font-size:11px;margin-top:6px;opacity:.7}
+.timeline{position:relative;margin:36px auto 0;max-width:500px}
+.timeline:before{content:"";position:absolute;left:50%;top:0;bottom:0;width:1px;background:currentColor;opacity:.25}
+.event{position:relative;display:grid;grid-template-columns:1fr 38px 1fr;gap:10px;align-items:center;margin:30px 0}
+.event .dot{width:11px;height:11px;border-radius:50%;background:currentColor;justify-self:center;box-shadow:0 0 0 5px #fff3}
+.event .time{text-align:right;font-size:34px;line-height:1}
+.event:nth-child(even) .time{grid-column:3;text-align:left}
+.event:nth-child(even) .copy{grid-column:1;grid-row:1;text-align:right}
+.event .copy h3{margin:0;color:var(--red);font-size:24px;font-weight:400}
+.event .copy p{margin:8px 0 0;font-size:18px;line-height:1.35}
+.event .time{grid-column:1}.event .dot{grid-column:2}.event .copy{grid-column:3}
+.red .event .copy h3{color:#fff3dd}.red .timeline:before{opacity:.5}
+.red .event .dot{background:#fff}.red .event .copy p{color:#fff8ed}
+.place-card{max-width:500px;margin:0 auto;text-align:center}
+.place-name{font-size:31px;color:#fff1df;line-height:1.05;margin-bottom:12px}
+.place-text{font-size:20px;line-height:1.4}
+.map-link{display:inline-block;margin-top:24px;padding:12px 26px;border:1px solid #fff9;border-radius:999px;text-decoration:none;transition:.3s}
+.map-link:hover{background:#fff;color:var(--red)}
+.clothes-grid{display:grid;grid-template-columns:1fr 1.45fr 1fr 1fr;gap:6px;align-items:end;margin-top:30px}
+.clothes-grid img{width:100%;height:220px;object-fit:cover;object-position:center top;background:#eee;border-radius:2px;filter:saturate(.92)}
+.clothes-copy{font-size:20px;line-height:1.4;max-width:470px;margin:auto}
+.clothes-copy:first-letter{font-size:58px;color:var(--red);float:left;line-height:.75;padding:.08em .12em 0 0}
+.gift-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px 18px;max-width:500px;margin:auto}
+.gift-card{position:relative;padding:6px}
+.gift-card h3{font-size:25px;font-weight:400;margin:0 0 7px;color:#fff1de}
+.gift-card p{font-size:17px;line-height:1.35;margin:0}
+.gift-card img{display:block;max-width:120px;max-height:105px;object-fit:contain;margin:10px auto}
+.gift-card.full{grid-column:1/-1;text-align:center}
+.gift-card.full img{max-width:150px}
+.rsvp{padding-top:52px}
+.form{max-width:480px;margin:0 auto}
+.form label{display:block;font-size:16px;margin:14px 0 6px}
+.form input,.form select,.form textarea{width:100%;padding:13px 14px;border:1px solid #9f2a243d;background:#fffaf4;border-radius:8px;font:inherit;color:var(--ink);outline:none}
+.form textarea{min-height:100px;resize:vertical}
+.form button{width:100%;margin-top:18px;padding:15px;border:0;border-radius:999px;background:var(--red);color:#fff8ed;font:inherit;font-size:19px;cursor:pointer;box-shadow:0 10px 24px #a92b2530}
+.form button:active{transform:translateY(1px)}
+.status{text-align:center;min-height:25px;margin-top:13px;font-size:16px}
+.footer{text-align:center;padding:45px 25px 60px;font-size:18px;line-height:1.45}
+.reveal{opacity:0;transform:translateY(32px);transition:opacity .9s ease,transform .9s cubic-bezier(.2,.8,.2,1)}
+.reveal.visible{opacity:1;transform:none}
+.letter{display:inline-block;opacity:0;transform:translateY(20px) rotate(4deg);animation:letterIn .7s forwards}
+@keyframes fadePage{from{opacity:0}to{opacity:1}}
+@keyframes letters{from{opacity:0;letter-spacing:.3em;transform:translateY(12px)}to{opacity:1;letter-spacing:0;transform:none}}
+@keyframes letterIn{to{opacity:1;transform:none}}
+@keyframes float{50%{transform:translateY(-8px)}}
+@keyframes breathe{50%{opacity:.3;transform:translateY(4px)}}
+@media (max-width:430px){
+ .section{padding-left:19px;padding-right:19px}
+ .hero .names{font-size:54px}
+ .chapter-title h2{font-size:32px}
+ .lead,.place-text,.clothes-copy{font-size:18px}
+ .event .time{font-size:28px}
+ .event .copy h3{font-size:20px}.event .copy p{font-size:16px}
+ .clothes-grid{grid-template-columns:1fr 1.4fr 1fr 1fr}.clothes-grid img{height:180px}
+ .gift-grid{gap:18px 10px}.gift-card p{font-size:15px}
+}
+@media (prefers-reduced-motion:reduce){
+ *,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+ .reveal{opacity:1;transform:none}
+}
 </style>
 </head>
 <body>
-<div class="phone" id="phone">
+<main class="page" id="top">
 
-  <!-- HERO -->
-  <div class="hero">
-    <svg class="hero-orn-top flora" viewBox="0 0 430 90" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-      <path d="M0 10 Q40 60 90 30 Q120 10 150 40 Q180 65 215 30 Q245 5 280 35 Q315 65 350 30 Q390 5 430 30 L430 0 L0 0 Z" fill="#c9a13a" opacity="0.35"/>
-      <circle cx="60" cy="20" r="6" fill="#e7c877"/>
-      <circle cx="215" cy="28" r="7" fill="#e7c877"/>
-      <circle cx="360" cy="20" r="6" fill="#e7c877"/>
-    </svg>
-
-    <div class="hero-inner">
-      <div class="hero-eyebrow">приглашаем вас на пир, торжество</div>
-      <div class="names" id="namesLine1"></div>
-      <span class="amp">&amp;</span>
-      <div class="names" id="namesLine2"></div>
-      <div class="hero-date">18 сентября 2026</div>
-      <div class="scroll-hint">листайте ниже ↓</div>
-    </div>
-
-    <svg class="hero-orn-bottom flora" viewBox="0 0 430 90" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-      <path d="M0 10 Q40 60 90 30 Q120 10 150 40 Q180 65 215 30 Q245 5 280 35 Q315 65 350 30 Q390 5 430 30 L430 0 L0 0 Z" fill="#c9a13a" opacity="0.35"/>
-    </svg>
+<section class="hero paper">
+  <div class="kicker">Свадебное приглашение</div>
+  <div class="names" aria-label="Александр и Лилия"><span class="letter" style="animation-delay:.1s">А</span><span class="letter" style="animation-delay:.16s">л</span><span class="letter" style="animation-delay:.22s">е</span><span class="letter" style="animation-delay:.28s">к</span><span class="letter" style="animation-delay:.34s">с</span><span class="letter" style="animation-delay:.4s">а</span><span class="letter" style="animation-delay:.46s">н</span><span class="letter" style="animation-delay:.52s">д</span><span class="letter" style="animation-delay:.58s">р</span><br><span class="and">&amp;</span><br><span class="letter" style="animation-delay:.75s">Л</span><span class="letter" style="animation-delay:.81s">и</span><span class="letter" style="animation-delay:.87s">л</span><span class="letter" style="animation-delay:.93s">и</span><span class="letter" style="animation-delay:.99s">я</span></div>
+  <div class="date">18 · 09 · 2026</div>
+  <div class="countdown" aria-label="Обратный отсчёт до свадьбы">
+    <div class="flip"><div class="card"><div class="num" id="cdDays">00</div></div><small>дней</small></div>
+    <div class="flip"><div class="card"><div class="num" id="cdHours">00</div></div><small>часов</small></div>
+    <div class="flip"><div class="card"><div class="num" id="cdMinutes">00</div></div><small>минут</small></div>
+    <div class="flip"><div class="card"><div class="num" id="cdSeconds">00</div></div><small>секунд</small></div>
   </div>
+  <p class="invite">Приглашаем вас на пир, тучения<br>испробовать да песни испеть,</p>
+  <div class="hero-book"><img src="assets/Photo3.jpeg" alt="Книга"></div>
+  <div class="scroll">листайте приглашение ↓</div>
+</section>
 
-  <div class="ornament-strip"></div>
+<div class="pattern"></div>
 
-  <!-- ГЛАВА 1. ВРЕМЯ -->
-  <section class="section-light" id="s1">
-    <div class="chapter">Глава 1</div>
-    <div class="chapter-title">Время</div>
-    <p class="dropcap">Вместе нашей свадьбе быть — песнями, танцами весёлыми да гуляньями широкими. Приглашаем вас разделить с нами этот день.</p>
-
-    <div class="flip-wrap" id="countdown">
-      <div class="flip-unit"><div class="flip-card"><div class="flip-digit" id="d-days">00</div></div><div class="flip-label">дней</div></div>
-      <div class="flip-unit"><div class="flip-card"><div class="flip-digit" id="d-hours">00</div></div><div class="flip-label">часов</div></div>
-      <div class="flip-unit"><div class="flip-card"><div class="flip-digit" id="d-mins">00</div></div><div class="flip-label">минут</div></div>
-      <div class="flip-unit"><div class="flip-card"><div class="flip-digit" id="d-secs">00</div></div><div class="flip-label">секунд</div></div>
-    </div>
-
-    <div class="calendar">
-      <div class="calendar-head"><span>Сентябрь</span><span>2026</span></div>
-      <div class="calendar-grid">
-        <div class="dow">Пн</div><div class="dow">Вт</div><div class="dow">Ср</div><div class="dow">Чт</div><div class="dow">Пт</div><div class="dow">Сб</div><div class="dow">Вс</div>
-        <div></div><div>1</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div>
-        <div>7</div><div>8</div><div>9</div><div>10</div><div>11</div><div>12</div><div>13</div>
-        <div>14</div><div>15</div><div>16</div><div>17</div><div><span class="marked">18</span></div><div>19</div><div>20</div>
-        <div>21</div><div>22</div><div>23</div><div>24</div><div>25</div><div>26</div><div>27</div>
-        <div>28</div><div>29</div><div>30</div>
-      </div>
-    </div>
-  </section>
-
-  <div class="ornament-strip"></div>
-
-  <!-- ГЛАВА 2. МЕСТО ДЕЙСТВИЯ -->
-  <section class="section-dark" id="s2">
-    <div class="chapter">Глава 2</div>
-    <div class="chapter-title">Место действия</div>
-    <p class="dropcap">Роспись состоится в стенах загса, а праздничный пир продолжится на дивной усадьбе, среди соловьиных ключей.</p>
-
-    <div class="card">
-      <h4>Дворец бракосочетания</h4>
-      <p>с. Вольно-Надеждинское, ул. Пушкина, д. 57</p>
-      <p style="margin-top:6px;">Начало росписи — 10:20</p>
-      <a class="map-link" href="https://yandex.ru/maps/?text=Вольно-Надеждинское%20ул.%20Пушкина%2057" target="_blank" rel="noopener">Открыть карту →</a>
-    </div>
-
-    <div class="card">
-      <h4>Банкет — усадьба «Соловушка»</h4>
-      <p>п. Соловей Ключ, СНТ «Соловушка», участок 85</p>
-      <p style="margin-top:6px;">Сбор гостей — 16:00</p>
-      <a class="map-link" href="https://yandex.ru/maps/?text=СНТ%20Соловушка%20Соловей%20Ключ" target="_blank" rel="noopener">Открыть карту →</a>
-    </div>
-  </section>
-
-  <div class="ornament-strip"></div>
-
-  <!-- ГЛАВА 3. КАК ВСЁ ПРОЙДЁТ -->
-  <section class="section-light" id="s3">
-    <div class="chapter">Глава 3</div>
-    <div class="chapter-title">Как всё пройдёт</div>
-
-    <div class="timeline">
-      <div class="t-item">
-        <div class="t-time">10:20</div>
-        <div class="t-dot"></div><div class="t-line"></div>
-        <div class="t-body"><h4>Роспись в загсе</h4><p>Торжественное вступление в законный брак</p></div>
-      </div>
-      <div class="t-item">
-        <div class="t-time">16:00</div>
-        <div class="t-dot"></div><div class="t-line"></div>
-        <div class="t-body"><h4>Сбор честного народа</h4><p>Встречаем гостей на усадьбе «Соловушка»</p></div>
-      </div>
-      <div class="t-item">
-        <div class="t-time">Вечер</div>
-        <div class="t-dot"></div><div class="t-line"></div>
-        <div class="t-body"><h4>Пир на весь мир</h4><p>Будем угощаться густо да душевно, да забавы весёлые</p></div>
-      </div>
-      <div class="t-item">
-        <div class="t-time">Ночь</div>
-        <div class="t-dot"></div>
-        <div class="t-body"><h4>Гуляем до звёзд</h4><p>Танцы, песни и тёплые разговоры до поздней ночи</p></div>
-      </div>
-    </div>
-  </section>
-
-  <div class="ornament-strip"></div>
-
-  <!-- ГЛАВА 4. ОДЕЖИНА -->
-  <section class="section-white" id="s4">
-    <div class="chapter">Глава 4</div>
-    <div class="chapter-title">Одёжина</div>
-    <p class="dropcap">Молодцы прекрасные да девицы красавицы, просим одеться нарядно — в тёплой гамме красного, белого и золотого, в духе русских узоров.</p>
-    <div class="palette">
-      <div class="swatch" style="background:#9c2222;"></div>
-      <div class="swatch" style="background:#fffaf1;"></div>
-      <div class="swatch" style="background:#c9a13a;"></div>
-      <div class="swatch" style="background:#3a1210;"></div>
-    </div>
-    <p class="center" style="margin-top:14px; font-size:12.5px; opacity:.75;">Точный образец наряда невеста пришлёт вам отдельно</p>
-  </section>
-
-  <div class="ornament-strip"></div>
-
-  <!-- ГЛАВА 5. ЛУЧШИЕ ПОДАРКИ -->
-  <section class="section-dark" id="s5">
-    <div class="chapter">Глава 5</div>
-    <div class="chapter-title">А лучше подарки</div>
-    <p class="dropcap">Дары желанны — ваши тёплые поздравления и пожелания помогут нам осуществить наши планы и мечты. Будем признательны за вклад в наше будущее.</p>
-
-    <div class="rsvp-box">
-      <div class="until">Просьба для дорогих гостей</div>
-      <p>Дайте нам знать о вашем решении до <strong>10 сентября 2026</strong></p>
-      <a class="contact-btn" href="tel:+79099999999">Сообщить о присутствии</a>
-    </div>
-  </section>
-
-  <div class="ornament-strip"></div>
-
-  <!-- ГЛАВА 6. НАВЕКИ -->
-  <section class="section-light center" id="s6">
-    <div class="chapter">Глава 6</div>
-    <div class="chapter-title">Навеки</div>
-    <p class="dropcap">Дорогие наши гости, просим запомнить эту дату, чтобы мы смогли поделиться ею с вами и нашим будущим потомством.</p>
-  </section>
-
-  <div class="footer">
-    <div>С любовью ждём вас</div>
-    <span class="amp2">Лилия &amp; Александр</span>
-    <div class="divider"></div>
-    <p>18 сентября 2026</p>
+<section class="section paper reveal">
+  <div class="orn left"><img src="assets/Photo1.jpeg" alt=""></div>
+  <div class="orn right"><img src="assets/Photo2.jpeg" alt=""></div>
+  <div class="chapter-title">
+    <div class="chapter-no">Александр и Лилия</div>
+    <h2>Глава 1.</h2><div class="sub">Время</div>
   </div>
+  <p class="lead dropcap">В месте нашей свадьбы быть<br>песнями, танцами весёлыми<br>да гуляньями широкими!</p>
+  <img class="book" src="assets/Photo3.jpeg" alt="Открытая книга">
+  <img class="divider" src="assets/Photo4.jpeg" alt="">
+</section>
 
-</div>
+<section class="section paper reveal">
+  <div class="chapter-title"><div class="chapter-no">18 сентября 2026</div><h2>Дата</h2></div>
+  <div class="calendar">
+    <div class="month">СЕНТЯБРЬ 2026</div>
+    <div class="week"><span>Пн</span><span>Вт</span><span>Ср</span><span>Чт</span><span>Пт</span><span>Сб</span><span>Вс</span></div>
+    <div class="days">
+      <span class="day">1</span><span class="day">2</span><span class="day">3</span><span class="day">4</span><span class="day">5</span><span class="day">6</span><span class="day">7</span>
+      <span class="day">8</span><span class="day">9</span><span class="day">10</span><span class="day">11</span><span class="day">12</span><span class="day">13</span><span class="day">14</span>
+      <span class="day">15</span><span class="day">16</span><span class="day">17</span><span class="day hit">18</span><span class="day">19</span><span class="day">20</span><span class="day">21</span>
+      <span class="day">22</span><span class="day">23</span><span class="day">24</span><span class="day">25</span><span class="day">26</span><span class="day">27</span><span class="day">28</span>
+      <span class="day">29</span><span class="day">30</span><span class="day">31</span>
+    </div>
+  </div>
+  <img class="divider" src="assets/Photo6.jpeg" alt="">
+</section>
 
+<section class="section red reveal">
+  <div class="chapter-title"><div class="chapter-no">16:00 — 23:00</div><h2>Глава 3.</h2><div class="sub">Как всё пройдёт</div></div>
+  <div class="timeline">
+    <article class="event"><div class="time">16:00</div><div class="dot"></div><div class="copy"><h3>Пир на весь мир</h3><p>Сбор гостей в 16:00.<br>Будем угощаться густно да душевно,<br>да забавы весёлые</p></div></article>
+    <article class="event"><div class="time">23:00</div><div class="dot"></div><div class="copy"><h3>Завершение гуляний</h3><p>Чаепитие с русским самоваром,<br>да с пирогами сладкими</p></div></article>
+  </div>
+  <div style="display:flex;justify-content:space-around;align-items:center;margin-top:34px">
+    <img src="assets/Photo11.jpeg" style="width:110px;max-height:100px;object-fit:contain" alt="">
+    <img src="assets/Photo12.jpeg" style="width:130px;max-height:120px;object-fit:contain" alt="">
+    <img src="assets/Photo10.jpeg" style="width:100px;max-height:120px;object-fit:contain" alt="">
+  </div>
+</section>
+
+<div class="pattern"></div>
+
+<section class="section paper reveal">
+  <div class="orn left"><img src="assets/Photo14.jpeg" alt=""></div>
+  <div class="orn right"><img src="assets/Photo15.jpeg" alt=""></div>
+  <div class="chapter-title"><h2>Глава 4.</h2><div class="sub">Одежда</div></div>
+  <p class="clothes-copy">Молодцы прекрасные да девицы красавицы, изволите одеться в стилистике русских нарядов пожаловать</p>
+  <div class="clothes-grid">
+    <img src="assets/Photo13.jpeg" alt="Русский женский наряд">
+    <img src="assets/Photo14.jpeg" alt="Русские ткани и узоры">
+    <img src="assets/Photo15.jpeg" alt="Русский мужской наряд">
+    <img src="assets/Photo16.jpeg" alt="Мужской образ">
+  </div>
+</section>
+
+<section class="section red reveal">
+  <div class="orn left" style="width:100px;top:30px;opacity:.8"><img src="assets/Photo8.jpeg" alt=""></div>
+  <div class="orn right" style="width:105px;top:35px;opacity:.8"><img src="assets/Photo16.jpeg" alt=""></div>
+  <div class="chapter-title"><h2>Глава 5.</h2><div class="sub">А лучше подарки</div></div>
+  <div class="gift-grid">
+    <article class="gift-card full">
+      <h3>Дары желанны</h3>
+      <p>Ваши поздравления в конвертах помогут осуществить наши планы и мечты.<br>Будем признательны за вклад в наше будущее!</p>
+      <img src="assets/Photo17.jpeg" alt="Сундук">
+    </article>
+    <article class="gift-card">
+      <img src="assets/Photo18.jpeg" alt="Голубь">
+      <h3>Встреча сказочная</h3>
+      <p>Если путь ваш дальний и в ночь нуждаетесь, мы поможем с приютом.</p>
+    </article>
+    <article class="gift-card">
+      <img src="assets/Photo19.jpeg" alt="">
+      <h3>Просьба для дорогих гостей</h3>
+      <p>Дайте знать о вашем решении до 10 сентября 2026 года</p>
+    </article>
+  </div>
+</section>
+
+<div class="pattern"></div>
+
+<section class="section red reveal">
+  <div class="place-card">
+    <div class="chapter-title"><h2>Глава 2.</h2><div class="sub">Место действия</div></div>
+    <div class="place-name">Усадьба дивная,<br>именуемая<br>«Эко Усадьба Гриннина»</div>
+    <div class="place-text">Время свадьбы: 10:20<br>Загс: с. Вольно-Надеждинское,<br>ул. Пушкина, д. 57</div>
+    <div class="place-text" style="margin-top:14px">Банкет мы проведём на даче по адресу:<br>Соловей Ключ, СНТ Соловушка,<br>участок 85</div>
+    <a class="map-link" target="_blank" rel="noopener" href="https://yandex.ru/maps/?text=%D0%AD%D0%BA%D0%BE%20%D0%A3%D1%81%D0%B0%D0%B4%D1%8C%D0%B1%D0%B0%20%D0%93%D1%80%D0%B8%D0%BD%D0%BD%D0%B8%D0%BD%D0%B0%2C%20%D0%A1%D0%BE%D0%BB%D0%BE%D0%B2%D0%B5%D0%B9%20%D0%9A%D0%BB%D1%8E%D1%87%2C%20%D0%A1%D0%9D%D0%A2%20%D0%A1%D0%BE%D0%BB%D0%BE%D0%B2%D1%83%D1%88%D0%BA%D0%B0%2C%2085">Открыть карту</a>
+  </div>
+</section>
+
+<div class="pattern"></div>
+
+<section class="section paper reveal rsvp" id="rsvp">
+  <div class="chapter-title"><h2>Глава 6.</h2><div class="sub">Анкета</div></div>
+  <p class="lead dropcap">Дорогие наши гости, просим запомнить дату эту, чтобы мы смогли поделиться с ней с нашим потомством</p>
+  <form class="form" id="rsvpForm">
+    <label for="name">Ваше имя</label>
+    <input id="name" name="name" required placeholder="Имя и фамилия">
+    <label for="attendance">Вы будете с нами?</label>
+    <select id="attendance" name="attendance" required>
+      <option value="">Выберите ответ</option>
+      <option>Да, с радостью!</option>
+      <option>К сожалению, не смогу</option>
+    </select>
+    <label for="guests">Количество гостей</label>
+    <select id="guests" name="guests">
+      <option>1</option><option>2</option><option>3</option><option>4</option>
+    </select>
+    <label for="wish">Пожелания</label>
+    <textarea id="wish" name="wish" placeholder="Оставьте несколько тёплых слов..."></textarea>
+    <button type="submit">Отправить ответ</button>
+    <div class="status" id="status"></div>
+  </form>
+</section>
+
+<footer class="footer paper reveal">
+  <img src="assets/Photo20.jpeg" alt="" style="width:95px;max-height:70px;object-fit:contain;opacity:.8">
+  <div style="margin-top:15px">Будем рады разделить с вами этот день.</div>
+  <div style="color:var(--red);margin-top:8px">Александр &amp; Лилия</div>
+</footer>
+
+</main>
 <script>
-  // ---------- letter-by-letter hero names ----------
-  function typeLetters(el, text, startDelay){
-    text.split('').forEach((ch, i)=>{
-      const span = document.createElement('span');
-      span.className='letter';
-      span.textContent = ch === ' ' ? '\u00A0' : ch;
-      span.style.animationDelay = (startDelay + i*0.06) + 's';
-      el.appendChild(span);
-    });
-  }
-  typeLetters(document.getElementById('namesLine1'), 'Лилия', 0.2);
-  typeLetters(document.getElementById('namesLine2'), 'Александр', 0.9);
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzFsJS95C7RunkVHnUrpVnQHRb1RmS_Dz2piTLUXSz2yuZUpT2Qsq9exNttAvPQXUOy/exec";
 
-  // ---------- scroll fade-in for sections ----------
-  const sections = document.querySelectorAll('section');
-  const io = new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{
-      if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); }
-    });
-  }, {threshold:0.18});
-  sections.forEach(s=>io.observe(s));
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}})
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
-  // ---------- flip countdown ----------
-  const weddingDate = new Date('2026-09-18T10:20:00');
-  const els = {
-    days: document.getElementById('d-days'),
-    hours: document.getElementById('d-hours'),
-    mins: document.getElementById('d-mins'),
-    secs: document.getElementById('d-secs')
-  };
-  let prev = {days:null,hours:null,mins:null,secs:null};
-
-  function pad(n){ return n.toString().padStart(2,'0'); }
-
-  function updateDigit(el, val, key){
-    const padded = pad(val);
-    if(prev[key] !== padded){
-      el.classList.remove('flipping');
-      void el.offsetWidth; // reflow to restart animation
-      el.classList.add('flipping');
-      el.textContent = padded;
-      prev[key] = padded;
-    }
-  }
-
+function animateFlip(el, value){
+  const next=String(value).padStart(2,'0');
+  if(el.textContent===next) return;
+  el.animate([{transform:'rotateX(0deg)'},{transform:'rotateX(-90deg)'},{transform:'rotateX(0deg)'}],{duration:650,easing:'cubic-bezier(.2,.8,.2,1)'});
+  el.textContent=next;
+}
+function countdown(){
+  const target=new Date("2026-09-18T10:20:00+10:00").getTime();
+  const ids=["cdDays","cdHours","cdMinutes","cdSeconds"];
+  let last=["","","",""];
   function tick(){
-    const now = new Date();
-    let diff = Math.max(0, weddingDate - now);
-    const days = Math.floor(diff / (1000*60*60*24));
-    const hours = Math.floor((diff / (1000*60*60)) % 24);
-    const mins = Math.floor((diff / (1000*60)) % 60);
-    const secs = Math.floor((diff / 1000) % 60);
-
-    updateDigit(els.days, days, 'days');
-    updateDigit(els.hours, hours, 'hours');
-    updateDigit(els.mins, mins, 'mins');
-    updateDigit(els.secs, secs, 'secs');
+    let diff=Math.max(0,target-Date.now());
+    const values=[
+      Math.floor(diff/86400000),
+      Math.floor((diff%86400000)/3600000),
+      Math.floor((diff%3600000)/60000),
+      Math.floor((diff%60000)/1000)
+    ];
+    values.forEach((v,i)=>{
+      const value=i===0?String(v):String(v).padStart(2,"0");
+      if(last[i]!==value){ animateFlip(document.getElementById(ids[i]),value); last[i]=value; }
+    });
   }
-  tick();
-  setInterval(tick, 1000);
+  tick(); setInterval(tick,1000);
+}countdown();
+
+document.getElementById('rsvpForm').addEventListener('submit',async(e)=>{
+  e.preventDefault();
+  const status=document.getElementById('status');
+  const form=e.currentTarget;
+  const data=new URLSearchParams(new FormData(form));
+  status.textContent="Отправляем ответ…";
+  try{
+    await fetch(SCRIPT_URL,{method:"POST",mode:"no-cors",headers:{"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},body:data.toString()});
+    status.textContent="Спасибо! Ваш ответ сохранён.";
+    form.reset();
+  }catch(err){
+    status.textContent="Не удалось отправить ответ. Попробуйте ещё раз.";
+  }
+});
 </script>
 </body>
 </html>
