@@ -7,7 +7,7 @@
 <title>Александр и Лилия — 18 сентября 2026</title>
 <style>
 @font-face{font-family:TDTeremok;src:url("TDTeremok.woff") format("woff");font-display:swap}
-@font-face{font-family:Balkara;src:url("Balkara.woff") format("woff"),url("Balkara.ttf") format("truetype");font-display:swap}
+@font-face{font-family:Balkara;src:url("BalkaraFreeCondensed.woff") format("woff"),url("BalkaraFreeCondensed.ttf") format("truetype");font-display:swap}
 :root{
   --red:#a92b25;--red2:#8f1f1b;--cream:#fffdf8;--ink:#17120f;
   --pattern-size:48px;
@@ -47,15 +47,14 @@ opacity:.95}
 .lead.dropcap:first-letter{font-size:58px;color:var(--red);float:left;line-height:.7;padding:.08em .12em 0 0}
 .flower-row{display:flex;justify-content:space-between;align-items:center;margin:28px -10px 5px}
 .flower-row img{width:31%;max-height:155px;object-fit:contain}
-.book{width:72%;margin:25px auto 0;display:block}
+.book{width:72%;margin:25px auto 0;display:block;animation:float 5s ease-in-out infinite}
 .divider{width:72%;height:auto;display:block;margin:25px auto}
 .calendar{margin:22px auto 0;text-align:center;max-width:440px}
 .calendar .month{font-size:32px;letter-spacing:.12em;color:var(--red)}
 .calendar .week,.calendar .days{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-top:12px;font-size:17px}
 .calendar .week{font-size:12px;opacity:.6}
 .calendar .day{padding:6px 0;position:relative}
-.calendar .day.hit{color:#fff;background:var(--red);border-radius:50%;font-weight:bold}
-.calendar .day.hit:after{content:"";position:absolute;inset:-8px;border:1px solid #a92b2540;border-radius:50%}
+.calendar .day.hit{position:relative}
 .countdown{margin:34px auto 0;display:grid;grid-template-columns:repeat(4,1fr);gap:8px;max-width:480px}
 .flip{perspective:700px;text-align:center}
 .flip .card{position:relative;height:64px;border-radius:7px;background:#17120f;color:#fff;overflow:hidden;box-shadow:0 8px 18px #0002}
@@ -116,15 +115,18 @@ opacity:.95}
 /* ---- правки: разделитель-рисунок между главами ---- */
 .chapter-divider{width:100%;display:block}
 
-/* ---- правки: заголовок календаря в стиле вложения (месяц / число / год) ---- */
-.calendar-head2{display:flex;align-items:baseline;justify-content:center;gap:14px;margin-bottom:6px}
-.calendar-head2 .ch-month{font-size:24px;letter-spacing:.08em;color:var(--ink)}
-.calendar-head2 .ch-num{font-size:44px;color:var(--red);line-height:1}
-.calendar-head2 .ch-year{font-size:20px;color:var(--ink);opacity:.75}
+/* ---- правки: заголовок календаря — линии сверху/снизу, заглавная "С" бордовым ---- */
+.calendar-head2{margin-bottom:6px}
+.ch-rule{height:1px;background:var(--ink);opacity:.28;width:92%;margin:0 auto}
+.ch-row{display:flex;align-items:baseline;justify-content:center;gap:14px;padding:10px 0}
+.ch-row .ch-month{font-size:24px;letter-spacing:.08em;color:var(--ink)}
+.ch-row .ch-cap{color:var(--red);font-weight:bold}
+.ch-row .ch-num{font-size:44px;color:var(--red);line-height:1}
+.ch-row .ch-year{font-size:20px;color:var(--ink);opacity:.75}
 
 /* ---- правки: отметка даты рисунком Photo5.png ---- */
 .calendar .day{position:relative}
-.calendar .day-mark{position:absolute;width:30px;left:50%;bottom:78%;transform:translateX(-50%);pointer-events:none}
+.calendar .day-mark{width:26px;height:auto;display:block;margin:0 auto}
 
 /* ---- правки: анкета внутри карточки "Просьба для дорогих гостей" (Глава 5) ---- */
 .rsvp-phrase{text-align:center;font-size:18px;line-height:1.4;margin:6px 0 16px}
@@ -137,12 +139,13 @@ opacity:.95}
 .lead.dropcap:first-letter{font-family:TDTeremok,Georgia,serif}
 .hero .invite.dropcap:first-letter{font-family:TDTeremok,Georgia,serif}
 
-/* ---- правки: Глава 2 — белый блок + Photo7.png на всю высоту слева ---- */
+/* ---- правки: Глава 2 — Photo1.png целиком позади текста и кнопок ---- */
 .section.paper .place-text{color:var(--ink)}
 .section.paper .map-link{border:1px solid var(--red);color:var(--red)}
 .section.paper .map-link:hover{background:var(--red);color:#fff}
-.orn.full-height{top:0;bottom:0;height:100%;width:110px}
-.orn.full-height img{width:100%;height:100%;object-fit:cover;display:block}
+.orn-bg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:.16;pointer-events:none;z-index:0}
+.orn-bg img{width:82%;max-width:380px;height:auto;object-fit:contain}
+.place-card{position:relative;z-index:1}
 
 /* ---- правки: большая бордовая заглавная буква в подзаголовках глав ---- */
 .cap-red{font-size:1.7em;color:var(--red);line-height:.6;display:inline-block;padding-right:2px}
@@ -178,11 +181,8 @@ opacity:.95}
   </div>
   <p class="invite dropcap balkara">Приглашаем вас на пир, тучения<br>испробовать да песни испеть</p>
   <p class="lead dropcap balkara" style="max-width:390px;margin:22px auto 0;text-align:left">В месте нашей свадьбы быть<br>песнями, танцами весёлыми<br>да гуляньями широкими!</p>
-  <div class="hero-book"><img src="assets/Photo3.png" alt=""></div>
   <div class="scroll">↓</div>
 </section>
-
-<img class="chapter-divider" src="assets/Photo21.png" alt="">
 
 <section class="section paper reveal">
   <div class="orn left" style="top:6px;width:110px"><img src="assets/Photo1.png" alt=""></div>
@@ -194,21 +194,22 @@ opacity:.95}
   <img class="divider" src="assets/Photo4.png" alt="">
 </section>
 
-<img class="chapter-divider" src="assets/Photo21.png" alt="">
-
 <section class="section paper reveal">
-  <div class="chapter-title"><h2>Дата</h2></div>
   <div class="calendar">
     <div class="calendar-head2">
-      <span class="ch-month">Сентябрь</span>
-      <span class="ch-num">18</span>
-      <span class="ch-year">2026</span>
+      <div class="ch-rule"></div>
+      <div class="ch-row">
+        <span class="ch-month"><span class="ch-cap">С</span>ентябрь</span>
+        <span class="ch-num">18</span>
+        <span class="ch-year">2026</span>
+      </div>
+      <div class="ch-rule"></div>
     </div>
     <div class="week"><span>Пн</span><span>Вт</span><span>Ср</span><span>Чт</span><span>Пт</span><span>Сб</span><span>Вс</span></div>
     <div class="days">
       <span class="day">1</span><span class="day">2</span><span class="day">3</span><span class="day">4</span><span class="day">5</span><span class="day">6</span><span class="day">7</span>
       <span class="day">8</span><span class="day">9</span><span class="day">10</span><span class="day">11</span><span class="day">12</span><span class="day">13</span><span class="day">14</span>
-      <span class="day">15</span><span class="day">16</span><span class="day">17</span><span class="day hit">18<img class="day-mark" src="assets/Photo5.png" alt=""></span><span class="day">19</span><span class="day">20</span><span class="day">21</span>
+      <span class="day">15</span><span class="day">16</span><span class="day">17</span><span class="day hit"><img class="day-mark" src="assets/Photo5.png" alt="18"></span><span class="day">19</span><span class="day">20</span><span class="day">21</span>
       <span class="day">22</span><span class="day">23</span><span class="day">24</span><span class="day">25</span><span class="day">26</span><span class="day">27</span><span class="day">28</span>
       <span class="day">29</span><span class="day">30</span><span class="day">31</span>
     </div>
@@ -216,11 +217,9 @@ opacity:.95}
   <img class="divider" src="assets/Photo6.png" alt="">
 </section>
 
-<img class="chapter-divider" src="assets/Photo21.png" alt="">
-
 <section class="section paper reveal">
-  <div class="orn left full-height"><img src="assets/Photo7.png" alt=""></div>
-  <div class="place-card" style="padding-left:20px">
+  <div class="orn-bg"><img src="assets/Photo1.png" alt=""></div>
+  <div class="place-card">
     <div class="chapter-title"><h2>Глава 2.</h2><div class="sub">Место действия</div></div>
     <div class="place-text">Загс: с. Вольно-Надеждинское,<br>ул. Пушкина, д. 57</div>
     <a class="map-link" target="_blank" rel="noopener" href="https://yandex.ru/maps/org/zags/11016756415/?ll=131.992178%2C43.371740&z=17">Открыть карту загса</a>
@@ -229,9 +228,8 @@ opacity:.95}
   </div>
 </section>
 
-<img class="chapter-divider" src="assets/Photo21.png" alt="">
-
 <section class="section red reveal">
+  <div class="orn" style="left:8px;top:8px;width:80px"><img src="assets/Photo9.png" alt=""></div>
   <div class="chapter-title"><div class="chapter-no">10:20 — 23:00</div><h2>Глава 3.</h2><div class="sub sub-highlight"><span class="cap-red">К</span>ак всё пройдёт</div></div>
   <div class="timeline">
     <article class="event"><div class="time">10:20</div><div class="dot"></div><div class="copy"><h3>Свадьба</h3><p>Торжественное вступление в законный брак</p></div></article>
@@ -246,27 +244,21 @@ opacity:.95}
   </div>
 </section>
 
-<img class="chapter-divider" src="assets/Photo21.png" alt="">
-
 <section class="section paper reveal">
   <div class="orn left"><img src="assets/Photo14.png" alt=""></div>
   <div class="orn right"><img src="assets/Photo15.png" alt=""></div>
   <div class="chapter-title"><h2>Глава 4.</h2><div class="sub">Одежина</div></div>
   <p class="clothes-copy">Молодцы прекрасные да девицы красавицы, изволите одеться в стилистике русских нарядов пожаловать</p>
   <div class="clothes-grid">
-    <img src="assets/Photo13.png" alt="Русский женский наряд">
-    <img src="assets/Photo14.png" alt="Русские ткани и узоры">
-    <img src="assets/Photo15.png" alt="Русский мужской наряд">
-    <img src="assets/Photo16.png" alt="Мужской образ">
+    <img src="assets/Photo22.png" alt="Русский женский наряд">
+
   </div>
 </section>
 
-<img class="chapter-divider" src="assets/Photo21.png" alt="">
-
 <section class="section red reveal">
-  <div class="orn left" style="width:100px;top:30px;opacity:.8"><img src="assets/Photo8.png" alt=""></div>
-  <div class="orn right" style="width:105px;top:35px;opacity:.8"><img src="assets/Photo16.png" alt=""></div>
-  <div class="chapter-title"><h2>Глава 5.</h2><div class="sub sub-highlight"><span class="cap-red">А</span> лучше подарки</div></div>
+  <div class="orn left" style="width:100px;top:30px;opacity:.8"><img src="assets/Photo37.png" alt=""></div>
+  <div class="orn right" style="width:105px;top:35px;opacity:.8"><img src="assets/Photo9.png" alt=""></div>
+  <div class="chapter-title"><h2>Глава 5.</h2><div class="sub sub-highlight">А лучше подарки</div></div>
   <div class="gift-grid">
     <article class="gift-card full">
       <h3>Дары желанны</h3>
@@ -299,8 +291,6 @@ opacity:.95}
     </article>
   </div>
 </section>
-
-<img class="chapter-divider" src="assets/Photo21.png" alt="">
 
 <footer class="footer paper reveal">
   <img src="assets/Photo20.png" alt="" style="width:95px;max-height:70px;object-fit:contain;opacity:.8">
