@@ -119,14 +119,15 @@ opacity:.95}
 .calendar-head2{margin-bottom:6px}
 .ch-rule{height:1px;background:var(--ink);opacity:.28;width:92%;margin:0 auto}
 .ch-row{display:flex;align-items:baseline;justify-content:center;gap:14px;padding:10px 0;transform:translateX(-10%)}
-.ch-row .ch-month{font-size:24px;letter-spacing:.08em;color:var(--ink)}
+.ch-row .ch-month{font-size:28px;letter-spacing:.08em;color:var(--ink)}
 .ch-row .ch-cap{color:var(--red);font-weight:bold}
-.ch-row .ch-num{font-size:44px;color:var(--red);line-height:1}
-.ch-row .ch-year{font-size:20px;color:var(--ink);opacity:.75}
+.ch-row .ch-num{font-size:52px;color:var(--red);line-height:1}
+.ch-row .ch-year{font-size:50px;color:var(--ink);opacity:.75}
 
-/* ---- правки: отметка даты рисунком Photo5.png ---- */
+/* ---- правки: отметка даты рисунком Photo5.png — крупнее, но вне потока, чтобы не растягивать строку ---- */
 .calendar .day{position:relative}
-.calendar .day-mark{width:25px;height:25px;object-fit:contain;display:block;margin:-15px auto 0}
+.calendar .day.hit{overflow:visible}
+.calendar .day-mark{position:absolute;width:50px;height:50px;object-fit:contain;left:50%;top:50%;transform:translate(-50%,-50%);margin:0}
 
 /* ---- правки: анкета внутри карточки "Просьба для дорогих гостей" (Глава 5) ---- */
 .rsvp-phrase{text-align:center;font-size:18px;line-height:1.4;margin:6px 0 16px}
@@ -161,7 +162,7 @@ opacity:.95}
 .clothes-single img{width:100%;max-width:100%;height:auto;display:block;margin:0 auto;border-radius:4px;object-fit:cover}
 
 /* ---- правки: Глава 5 — голубь справа от "Встреча сказная" ---- */
-.gift-card-row{display:flex;align-items:center;gap:14px;text-align:left}
+.gift-card-row{display:flex;align-items:center;gap:8px;text-align:left}
 .gift-card-row h3{margin:0 0 6px}
 .gift-dove{max-width:64px;max-height:64px;flex-shrink:0;margin:0!important}
 
@@ -195,8 +196,8 @@ opacity:.95}
     <div class="flip"><div class="card"><div class="num" id="cdMinutes">00</div></div><small>минут</small></div>
     <div class="flip"><div class="card"><div class="num" id="cdSeconds">00</div></div><small>секунд</small></div>
   </div>
-  <p class="invite dropcap balkara">Приглашаем вас на пир, тучения<br>испробовать да песни испеть</p>
-  <p class="lead dropcap balkara" style="max-width:390px;margin:22px auto 0;text-align:left">В месте нашей свадьбы быть<br>песнями, танцами весёлыми<br>да гуляньями широкими!</p>
+  <p class="invite dropcap balkara">Приглашаем вас на пир, угощения<br>испробовать да вина испить</p>
+  <p class="lead dropcap balkara" style="max-width:390px;margin:22px auto 0;text-align:center">В честь нашей свадьбы быть<br>песням, танцам весёлым<br>да гуляньями широким!</p>
   <div class="scroll">↓</div>
 </section>
 
@@ -254,13 +255,13 @@ opacity:.95}
 <img class="chapter-divider" src="assets/Photo21.png" alt="">
 
 <section class="section red reveal">
-  <div class="orn" style="left:8px;top:8px;width:128px"><img class="draw-in" src="assets/Photo9.png" alt=""></div>
+  <div class="orn" style="left:8px;top:8px;width:109px"><img class="draw-in" src="assets/Photo9.png" alt=""></div>
   <div class="chapter-title"><div class="chapter-no">10:20 — 23:00</div><h2>Глава 3.</h2><div class="sub sub-highlight">Как всё пройдёт</div></div>
   <div class="timeline">
-    <article class="event"><div class="time">10:20</div><div class="dot"></div><div class="copy"><h3>Свадьба</h3><p>Торжественное вступление в законный брак</p></div></article>
-    <article class="event"><div class="time">16:00</div><div class="dot"></div><div class="copy"><h3>Сбор честного народа</h3><p>Встречаем гостей</p><img class="draw-in event-ill" style="left:-20" src="assets/Photo11.png" alt=""></div></article>
-    <article class="event"><div class="time">16:00</div><div class="dot"></div><div class="copy"><h3>Пир на весь мир</h3><p>Будем угощаться густно да душевно,<br>да забавы весёлые</p><img class="draw-in event-ill" style="right:0" src="assets/Photo12.png" alt=""></div></article>
-    <article class="event"><div class="time">23:00</div><div class="dot"></div><div class="copy"><h3>Завершение гуляний</h3><p>Чаепитие с русским самоваром,<br>да с пирогами сладкими</p><img class="draw-in event-ill" style="left:-20px" src="assets/Photo10.png" alt=""></div></article>
+    <article class="event"><div class="time">10:20</div><div class="dot"></div><div class="copy"><h3>Свадьба</h3><p>Торжественное вступление в законный брак</p><img class="draw-in event-ill" style="top:-52px;bottom:auto;right:0" src="assets/Photo10.png" alt=""></div></article>
+    <article class="event"><div class="time">16:00</div><div class="dot"></div><div class="copy"><h3>Сбор честного народа</h3><p>Начало гуляний</p><img class="draw-in event-ill" style="left:-42px" src="assets/Photo11.png" alt=""></div></article>
+    <article class="event"><div class="time">16:00</div><div class="dot"></div><div class="copy"><h3>Пир на весь мир</h3><p>Время кушаний, тостов душевных,<br>да забав весёлых</p></div></article>
+    <article class="event"><div class="time">23:00</div><div class="dot"></div><div class="copy"><h3>Завершение гуляний</h3><p>Чаепитие с русским самоваром,<br>да с пирогами сладкими</p><img class="draw-in event-ill" style="bottom:-64px;left:-10px;width:72px" src="assets/Photo12.png" alt=""></div></article>
   </div>
 </section>
 
@@ -270,7 +271,7 @@ opacity:.95}
   <div class="orn left" style="width:101px"><img class="draw-in" src="assets/Photo14.png" alt=""></div>
   <div class="orn right" style="width:97px"><img class="draw-in" src="assets/Photo15.png" alt=""></div>
   <div class="chapter-title"><h2>Глава 4.</h2><div class="sub">Одежина</div></div>
-  <p class="clothes-copy">Молодцы прекрасные да девицы красавицы, изволите одеться в стилистике русских нарядов пожаловать</p>
+  <p class="clothes-copy">Молодцы прекрасные да девицы-красавицы, извольте одеяния в стилистике русских нарядов подбирать</p>
   <div class="clothes-single">
     <img class="draw-in" src="assets/Photo22.png" alt="Русский женский наряд">
   </div>
@@ -279,7 +280,7 @@ opacity:.95}
 <img class="chapter-divider" src="assets/Photo21.png" alt="">
 
 <section class="section red reveal">
-  <div class="orn" style="right:8px;top:8px;width:90px;opacity:.85"><img class="draw-in" src="assets/Photo9.png" alt=""></div>
+  <div class="orn" style="right:8px;top:8px;width:117px;opacity:.85"><img class="draw-in" src="assets/Photo9.png" alt=""></div>
   <div class="chapter-title"><h2>Глава 5.</h2><div class="sub sub-highlight">А лучше подарки</div></div>
   <div class="gift-grid">
     <article class="gift-card full">
@@ -287,7 +288,7 @@ opacity:.95}
       <p class="balkara">Ваши поздравления в конвертах помогут осуществить наши планы и мечты.<br>Будем признательны за вклад в наше будущее!</p>
       <img class="draw-in" src="assets/Photo17.png" alt="Сундук">
     </article>
-    <article class="gift-card">
+    <article class="gift-card full">
       <div class="gift-card-row">
         <div>
           <h3>Встреча сказная</h3>
@@ -313,7 +314,7 @@ opacity:.95}
         <textarea id="wish" name="wish" placeholder="Оставьте несколько тёплых слов..."></textarea>
         <button type="submit">Сообщить о присутствии</button>
         <div class="status" id="status"></div>
-        <img class="draw-in" src="assets/Photo19.png" alt="" style="width:70px;margin:18px auto 0;display:block;opacity:.9">
+        <img class="draw-in" src="assets/Photo19.png" alt="" style="width:175px;margin:22px auto 0;display:block;opacity:.9;transform:rotate(90deg)">
       </form>
     </article>
   </div>
@@ -325,7 +326,7 @@ opacity:.95}
   <img class="draw-in" src="assets/Photo20.png" alt="" style="width:95px;max-height:70px;object-fit:contain;opacity:.8">
   <img class="draw-in" src="assets/Photo4.png" alt="" style="width:60%;height:auto;display:block;margin:18px auto 0">
   <div style="margin-top:15px" class="balkara">Дорогие наши гости, просим запомнить дату эту, чтобы мы смогли поделиться с ней с нашим потомством</div>
-  <div style="color:var(--red);margin-top:8px;font-size:26px">Александр и Лилия</div>
+  <div style="color:var(--red);margin-top:8px;font-size:47px">Александр и Лилия</div>
 </footer>
 
 </main>
