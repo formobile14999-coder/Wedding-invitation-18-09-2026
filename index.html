@@ -180,6 +180,7 @@ opacity:.95}
  .reveal{opacity:1;transform:none}
 }
 </style>
+<noscript><style>.draw-in{clip-path:none!important}</style></noscript>
 </head>
 <body>
 <main class="page" id="top">
@@ -338,8 +339,19 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
 const ioImg = new IntersectionObserver((entries)=>{
   entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('drawn');ioImg.unobserve(e.target)}})
-},{threshold:.2});
-document.querySelectorAll('img.draw-in').forEach(el=>ioImg.observe(el));
+},{threshold:0,rootMargin:'0px 0px -5% 0px'});
+document.querySelectorAll('img.draw-in').forEach(el=>{
+  // если картинка уже в зоне видимости при загрузке — сразу показываем, без ожидания скролла
+  const r = el.getBoundingClientRect();
+  if(r.top < window.innerHeight && r.bottom > 0){ el.classList.add('drawn'); }
+  else { ioImg.observe(el); }
+});
+// страховка: если по каким-то причинам браузер не подтвердил появление картинки
+// (например IntersectionObserver недоступен или сбой на редком устройстве),
+// показываем все картинки принудительно через 2.5 секунды
+setTimeout(()=>{
+  document.querySelectorAll('img.draw-in:not(.drawn)').forEach(el=>el.classList.add('drawn'));
+}, 2500);
 
 function animateFlip(el, value){
   const next=String(value).padStart(2,'0');
