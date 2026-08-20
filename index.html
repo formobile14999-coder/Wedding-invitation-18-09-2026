@@ -118,7 +118,7 @@ opacity:.95}
 /* ---- правки: заголовок календаря — линии сверху/снизу, заглавная "С" бордовым ---- */
 .calendar-head2{margin-bottom:6px}
 .ch-rule{height:1px;background:var(--ink);opacity:.28;width:92%;margin:0 auto}
-.ch-row{display:flex;align-items:baseline;justify-content:center;gap:14px;padding:10px 0}
+.ch-row{display:flex;align-items:baseline;justify-content:center;gap:14px;padding:10px 0;transform:translateX(-10%)}
 .ch-row .ch-month{font-size:24px;letter-spacing:.08em;color:var(--ink)}
 .ch-row .ch-cap{color:var(--red);font-weight:bold}
 .ch-row .ch-num{font-size:44px;color:var(--red);line-height:1}
@@ -126,7 +126,7 @@ opacity:.95}
 
 /* ---- правки: отметка даты рисунком Photo5.png ---- */
 .calendar .day{position:relative}
-.calendar .day-mark{width:26px;height:auto;display:block;margin:0 auto}
+.calendar .day-mark{width:22px;height:22px;object-fit:contain;display:block;margin:-15px auto 0}
 
 /* ---- правки: анкета внутри карточки "Просьба для дорогих гостей" (Глава 5) ---- */
 .rsvp-phrase{text-align:center;font-size:18px;line-height:1.4;margin:6px 0 16px}
@@ -147,8 +147,23 @@ opacity:.95}
 .orn-bg img{width:82%;max-width:380px;height:auto;object-fit:contain}
 .place-card{position:relative;z-index:1}
 
-/* ---- правки: большая бордовая заглавная буква в подзаголовках глав ---- */
-.cap-red{font-size:1.7em;color:var(--red);line-height:.6;display:inline-block;padding-right:2px}
+/* ---- правки: анимация "рисования от руки" сверху вниз для картинок (кроме книги и Photo21) ---- */
+.draw-in{clip-path:inset(0 0 100% 0);transition:clip-path 1.15s cubic-bezier(.25,.75,.3,1)}
+.draw-in.drawn{clip-path:inset(0 0 0% 0)}
+
+/* ---- правки: Глава 3 — 3 картинки распределены вдоль таймлайна ---- */
+.event .copy{position:relative}
+/* ---- правки: ложка/петух/самовар в Главе 3 опущены на 10% (translateY) ---- */
+.event-ill{position:absolute;bottom:-34px;width:56px;opacity:.85;pointer-events:none;transform:translateY(10%)}
+
+/* ---- правки: Глава 4 — одно фото по центру в полный размер ---- */
+.clothes-single{text-align:center;margin-top:30px}
+.clothes-single img{width:100%;max-width:100%;height:auto;display:block;margin:0 auto;border-radius:4px;object-fit:cover}
+
+/* ---- правки: Глава 5 — голубь справа от "Встреча сказная" ---- */
+.gift-card-row{display:flex;align-items:center;gap:14px;text-align:left}
+.gift-card-row h3{margin:0 0 6px}
+.gift-dove{max-width:64px;max-height:64px;flex-shrink:0;margin:0!important}
 
 @media (max-width:430px){
  .section{padding-left:19px;padding-right:19px}
@@ -180,19 +195,24 @@ opacity:.95}
     <div class="flip"><div class="card"><div class="num" id="cdSeconds">00</div></div><small>секунд</small></div>
   </div>
   <p class="invite dropcap balkara">Приглашаем вас на пир, тучения<br>испробовать да песни испеть</p>
-  <p class="lead dropcap balkara" style="max-width:390px;margin:22px auto 0;text-align:left">В месте нашей свадьбы быть<br>песнями,танцами весёлыми да гуляньями широкими!</p>
+  <p class="lead dropcap balkara" style="max-width:390px;margin:22px auto 0;text-align:left">В месте нашей свадьбы быть<br>песнями, танцами весёлыми<br>да гуляньями широкими!</p>
   <div class="scroll">↓</div>
 </section>
 
-<section class="section paper reveal">
-  <div class="orn left" style="top:6px;width:110px"><img src="assets/Photo1.png" alt=""></div>
-  <div class="orn right" style="top:6px;width:105px"><img src="assets/Photo2.png" alt=""></div>
+<img class="chapter-divider" src="assets/Photo21.png" alt="">
+
+<!-- Глава 1: отступ сверху задаёт margin-top ниже. Отрицательное число поднимает блок, положительное/менее отрицательное — опускает -->
+<section class="section paper reveal" style="margin-top:-13svh">
+  <div class="orn left" style="top:6px;width:110px"><img class="draw-in" src="assets/Photo1.png" alt=""></div>
+  <div class="orn right" style="top:6px;width:105px"><img class="draw-in" src="assets/Photo2.png" alt=""></div>
   <div class="chapter-title">
     <h2>Глава 1.</h2><div class="sub">Время</div>
   </div>
   <img class="book" src="assets/Photo3.png" alt="Открытая книга">
-  <img class="divider" src="assets/Photo4.png" alt="">
+  <img class="draw-in divider" src="assets/Photo4.png" alt="">
 </section>
+
+<img class="chapter-divider" src="assets/Photo21.png" alt="">
 
 <section class="section paper reveal">
   <div class="calendar">
@@ -207,18 +227,20 @@ opacity:.95}
     </div>
     <div class="week"><span>Пн</span><span>Вт</span><span>Ср</span><span>Чт</span><span>Пт</span><span>Сб</span><span>Вс</span></div>
     <div class="days">
-      <span class="day">1</span><span class="day">2</span><span class="day">3</span><span class="day">4</span><span class="day">5</span><span class="day">6</span><span class="day">7</span>
-      <span class="day">8</span><span class="day">9</span><span class="day">10</span><span class="day">11</span><span class="day">12</span><span class="day">13</span><span class="day">14</span>
-      <span class="day">15</span><span class="day">16</span><span class="day">17</span><span class="day hit"><img class="day-mark" src="assets/Photo5.png" alt="18"></span><span class="day">19</span><span class="day">20</span><span class="day">21</span>
-      <span class="day">22</span><span class="day">23</span><span class="day">24</span><span class="day">25</span><span class="day">26</span><span class="day">27</span><span class="day">28</span>
-      <span class="day">29</span><span class="day">30</span><span class="day">31</span>
+      <span class="day"></span><span class="day">1</span><span class="day">2</span><span class="day">3</span><span class="day">4</span><span class="day">5</span><span class="day">6</span>
+      <span class="day">7</span><span class="day">8</span><span class="day">9</span><span class="day">10</span><span class="day">11</span><span class="day">12</span><span class="day">13</span>
+      <span class="day">14</span><span class="day">15</span><span class="day">16</span><span class="day">17</span><span class="day hit"><img class="draw-in day-mark" src="assets/Photo5.png" alt="18"></span><span class="day">19</span><span class="day">20</span>
+      <span class="day">21</span><span class="day">22</span><span class="day">23</span><span class="day">24</span><span class="day">25</span><span class="day">26</span><span class="day">27</span>
+      <span class="day">28</span><span class="day">29</span><span class="day">30</span><span class="day"></span><span class="day"></span><span class="day"></span><span class="day"></span>
     </div>
   </div>
-  <img class="divider" src="assets/Photo6.png" alt="">
+  <img class="draw-in divider" src="assets/Photo6.png" alt="">
 </section>
 
+<img class="chapter-divider" src="assets/Photo21.png" alt="">
+
 <section class="section paper reveal">
-  <div class="orn-bg"><img src="assets/Photo1.png" alt=""></div>
+  <div class="orn-bg"><img class="draw-in" src="assets/Photo1.png" alt=""></div>
   <div class="place-card">
     <div class="chapter-title"><h2>Глава 2.</h2><div class="sub">Место действия</div></div>
     <div class="place-text">Загс: с. Вольно-Надеждинское,<br>ул. Пушкина, д. 57</div>
@@ -228,52 +250,55 @@ opacity:.95}
   </div>
 </section>
 
+<img class="chapter-divider" src="assets/Photo21.png" alt="">
+
 <section class="section red reveal">
-  <div class="orn" style="left:8px;top:8px;width:80px"><img src="assets/Photo9.png" alt=""></div>
-  <div class="chapter-title"><div class="chapter-no">10:20 — 23:00</div><h2>Глава 3.</h2><div class="sub sub-highlight"><span class="cap-red">К</span>ак всё пройдёт</div></div>
+  <div class="orn" style="left:8px;top:8px;width:128px"><img class="draw-in" src="assets/Photo9.png" alt=""></div>
+  <div class="chapter-title"><div class="chapter-no">10:20 — 23:00</div><h2>Глава 3.</h2><div class="sub sub-highlight">Как всё пройдёт</div></div>
   <div class="timeline">
-    <article class="event"><div class="time">10:20</div><div class="dot"></div><div class="copy"><h3>Свадьба</h3><p>Торжественное вступление в законный брак в ЗАГСе</p></div></article>
-    <article class="event"><div class="time">16:00</div><div class="dot"></div><div class="copy"><h3>Сбор честного народа</h3><p>Встречаем гостей</p></div></article>
-    <article class="event"><div class="time">16:00</div><div class="dot"></div><div class="copy"><h3>Пир на весь мир</h3><p>Будем угощаться густно да душевно,<br>да забавы весёлые</p></div></article>
-    <article class="event"><div class="time">23:00</div><div class="dot"></div><div class="copy"><h3>Завершение гуляний</h3><p>Чаепитие с русским самоваром,<br>да с пирогами сладкими</p></div></article>
-  </div>
-  <div style="display:flex;justify-content:space-around;align-items:center;margin-top:34px">
-    <img src="assets/Photo11.png" style="width:110px;max-height:100px;object-fit:contain" alt="">
-    <img src="assets/Photo12.png" style="width:130px;max-height:120px;object-fit:contain" alt="">
-    <img src="assets/Photo10.png" style="width:100px;max-height:120px;object-fit:contain" alt="">
+    <article class="event"><div class="time">10:20</div><div class="dot"></div><div class="copy"><h3>Свадьба</h3><p>Торжественное вступление в законный брак</p></div></article>
+    <article class="event"><div class="time">16:00</div><div class="dot"></div><div class="copy"><h3>Сбор честного народа</h3><p>Встречаем гостей</p><img class="draw-in event-ill" style="left:0" src="assets/Photo11.png" alt=""></div></article>
+    <article class="event"><div class="time">16:00</div><div class="dot"></div><div class="copy"><h3>Пир на весь мир</h3><p>Будем угощаться густно да душевно,<br>да забавы весёлые</p><img class="draw-in event-ill" style="right:0" src="assets/Photo12.png" alt=""></div></article>
+    <article class="event"><div class="time">23:00</div><div class="dot"></div><div class="copy"><h3>Завершение гуляний</h3><p>Чаепитие с русским самоваром,<br>да с пирогами сладкими</p><img class="draw-in event-ill" style="left:0" src="assets/Photo10.png" alt=""></div></article>
   </div>
 </section>
+
+<img class="chapter-divider" src="assets/Photo21.png" alt="">
 
 <section class="section paper reveal">
-  <div class="orn left"><img src="assets/Photo2.png" alt=""></div>
-  <div class="orn right"><img src="assets/Photo15.png" alt=""></div>
+  <div class="orn left" style="width:101px"><img class="draw-in" src="assets/Photo14.png" alt=""></div>
+  <div class="orn right" style="width:97px"><img class="draw-in" src="assets/Photo15.png" alt=""></div>
   <div class="chapter-title"><h2>Глава 4.</h2><div class="sub">Одежина</div></div>
   <p class="clothes-copy">Молодцы прекрасные да девицы красавицы, изволите одеться в стилистике русских нарядов пожаловать</p>
-  <div class="clothes-grid">
-    <img src="assets/Photo22.png" alt="Русский женский наряд">
-
+  <div class="clothes-single">
+    <img class="draw-in" src="assets/Photo22.png" alt="Русский женский наряд">
   </div>
 </section>
 
+<img class="chapter-divider" src="assets/Photo21.png" alt="">
+
 <section class="section red reveal">
-  <div class="orn left" style="width:100px;top:30px;opacity:.8"><img src="assets/Photo37.png" alt=""></div>
-  <div class="orn right" style="width:105px;top:35px;opacity:.8"><img src="assets/Photo9.png" alt=""></div>
+  <div class="orn" style="right:8px;top:8px;width:70px;opacity:.85"><img class="draw-in" src="assets/Photo9.png" alt=""></div>
   <div class="chapter-title"><h2>Глава 5.</h2><div class="sub sub-highlight">А лучше подарки</div></div>
   <div class="gift-grid">
     <article class="gift-card full">
       <h3>Дары желанны</h3>
       <p class="balkara">Ваши поздравления в конвертах помогут осуществить наши планы и мечты.<br>Будем признательны за вклад в наше будущее!</p>
-      <img src="assets/Photo17.png" alt="Сундук">
+      <img class="draw-in" src="assets/Photo17.png" alt="Сундук">
     </article>
     <article class="gift-card">
-      <img src="assets/Photo18.png" alt="Голубь">
-      <h3>Встреча сказная</h3>
-      <p>Если путь ваш дальний и в ночь нуждаетесь, мы поможем с приютом.</p>
+      <div class="gift-card-row">
+        <div>
+          <h3>Встреча сказная</h3>
+          <p>Если путь ваш дальний и в ночь нуждаетесь, мы поможем с приютом.</p>
+        </div>
+        <img class="draw-in gift-dove" src="assets/Photo18.png" alt="Голубь">
+      </div>
     </article>
     <article class="gift-card full" id="rsvp">
-      <img src="assets/Photo19.png" alt="">
+      <img class="draw-in" src="assets/Photo19.png" alt="">
       <h3>Просьба для дорогих гостей</h3>
-      <p class="rsvp-phrase balkara">Дайте знать о вашем решении<br>до 10 сентября 2026 года</p>
+      <p class="rsvp-phrase balkara">Дайте знать о вашем решении до 10 сентября 2026 года</p>
       <form class="form" id="rsvpForm">
         <label for="name">Ваше имя</label>
         <input id="name" name="name" required placeholder="Имя и фамилия">
@@ -287,13 +312,17 @@ opacity:.95}
         <textarea id="wish" name="wish" placeholder="Оставьте несколько тёплых слов..."></textarea>
         <button type="submit">Сообщить о присутствии</button>
         <div class="status" id="status"></div>
+        <img class="draw-in" src="assets/Photo19.png" alt="" style="width:70px;margin:18px auto 0;display:block;opacity:.9">
       </form>
     </article>
   </div>
 </section>
 
+<img class="chapter-divider" src="assets/Photo21.png" alt="">
+
 <footer class="footer paper reveal">
-  <img src="assets/Photo20.png" alt="" style="width:95px;max-height:70px;object-fit:contain;opacity:.8">
+  <img class="draw-in" src="assets/Photo20.png" alt="" style="width:95px;max-height:70px;object-fit:contain;opacity:.8">
+  <img class="draw-in" src="assets/Photo4.png" alt="" style="width:60%;height:auto;display:block;margin:18px auto 0">
   <div style="margin-top:15px" class="balkara">Дорогие наши гости, просим запомнить дату эту, чтобы мы смогли поделиться с ней с нашим потомством</div>
   <div style="color:var(--red);margin-top:8px;font-size:26px">Александр и Лилия</div>
 </footer>
@@ -306,6 +335,11 @@ const io = new IntersectionObserver((entries)=>{
   entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}})
 },{threshold:.12});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+const ioImg = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('drawn');ioImg.unobserve(e.target)}})
+},{threshold:.2});
+document.querySelectorAll('img.draw-in').forEach(el=>ioImg.observe(el));
 
 function animateFlip(el, value){
   const next=String(value).padStart(2,'0');
