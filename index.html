@@ -118,7 +118,7 @@ opacity:.95}
 /* ---- правки: заголовок календаря — линии сверху/снизу, заглавная "С" бордовым ---- */
 .calendar-head2{margin-bottom:6px}
 .ch-rule{height:1px;background:var(--ink);opacity:.28;width:92%;margin:0 auto}
-.ch-row{display:flex;align-items:baseline;justify-content:center;gap:14px;padding:10px 0;transform:translateX(-10%)}
+.ch-row{display:flex;align-items:baseline;justify-content:center;gap:14px;padding:10px 0;transform:translateX(-5%)}
 .ch-row .ch-month{font-size:24px;letter-spacing:.08em;color:var(--ink)}
 .ch-row .ch-cap{color:var(--red);font-weight:bold}
 .ch-row .ch-num{font-size:44px;color:var(--red);line-height:1}
@@ -154,7 +154,7 @@ opacity:.95}
 /* ---- правки: Глава 3 — 3 картинки распределены вдоль таймлайна ---- */
 .event .copy{position:relative}
 /* ---- правки: ложка/петух/самовар в Главе 3 опущены на 10% (translateY) ---- */
-.event-ill{position:absolute;bottom:-34px;width:56px;opacity:.85;pointer-events:none;transform:translateY(10%)}
+.event-ill{position:absolute;bottom:-34px;width:56px;opacity:.85;pointer-events:none;transform:translateY(15%)}
 
 /* ---- правки: Глава 4 — одно фото по центру в полный размер ---- */
 .clothes-single{text-align:center;margin-top:30px}
@@ -180,7 +180,6 @@ opacity:.95}
  .reveal{opacity:1;transform:none}
 }
 </style>
-<noscript><style>.draw-in{clip-path:none!important}</style></noscript>
 </head>
 <body>
 <main class="page" id="top">
@@ -209,7 +208,7 @@ opacity:.95}
   <div class="chapter-title">
     <h2>Глава 1.</h2><div class="sub">Время</div>
   </div>
-  <img class="book" src="assets/Photo3.png" alt="Открытая книга">
+  <img class="book" src="assets/Photo3.png" alt="Открытая.orn.left книга">
   <img class="draw-in divider" src="assets/Photo4.png" alt="">
 </section>
 
@@ -254,7 +253,7 @@ opacity:.95}
 <img class="chapter-divider" src="assets/Photo21.png" alt="">
 
 <section class="section red reveal">
-  <div class="orn" style="left:8px;top:8px;width:128px"><img class="draw-in" src="assets/Photo9.png" alt=""></div>
+  <div class="orn" style="left:8px;top:8px;width:118px"><img class="draw-in" src="assets/Photo9.png" alt=""></div>
   <div class="chapter-title"><div class="chapter-no">10:20 — 23:00</div><h2>Глава 3.</h2><div class="sub sub-highlight">Как всё пройдёт</div></div>
   <div class="timeline">
     <article class="event"><div class="time">10:20</div><div class="dot"></div><div class="copy"><h3>Свадьба</h3><p>Торжественное вступление в законный брак</p></div></article>
@@ -267,7 +266,7 @@ opacity:.95}
 <img class="chapter-divider" src="assets/Photo21.png" alt="">
 
 <section class="section paper reveal">
-  <div class="orn left" style="width:101px"><img class="draw-in" src="assets/Photo14.png" alt=""></div>
+  <div class="orn left" style="width:30px"><img class="draw-in" src="assets/Photo14.png" alt=""></div>
   <div class="orn right" style="width:97px"><img class="draw-in" src="assets/Photo15.png" alt=""></div>
   <div class="chapter-title"><h2>Глава 4.</h2><div class="sub">Одежина</div></div>
   <p class="clothes-copy">Молодцы прекрасные да девицы красавицы, изволите одеться в стилистике русских нарядов пожаловать</p>
@@ -339,19 +338,8 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
 const ioImg = new IntersectionObserver((entries)=>{
   entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('drawn');ioImg.unobserve(e.target)}})
-},{threshold:0,rootMargin:'0px 0px -5% 0px'});
-document.querySelectorAll('img.draw-in').forEach(el=>{
-  // если картинка уже в зоне видимости при загрузке — сразу показываем, без ожидания скролла
-  const r = el.getBoundingClientRect();
-  if(r.top < window.innerHeight && r.bottom > 0){ el.classList.add('drawn'); }
-  else { ioImg.observe(el); }
-});
-// страховка: если по каким-то причинам браузер не подтвердил появление картинки
-// (например IntersectionObserver недоступен или сбой на редком устройстве),
-// показываем все картинки принудительно через 2.5 секунды
-setTimeout(()=>{
-  document.querySelectorAll('img.draw-in:not(.drawn)').forEach(el=>el.classList.add('drawn'));
-}, 2500);
+},{threshold:.2});
+document.querySelectorAll('img.draw-in').forEach(el=>ioImg.observe(el));
 
 function animateFlip(el, value){
   const next=String(value).padStart(2,'0');
