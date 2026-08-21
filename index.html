@@ -118,7 +118,7 @@ opacity:.95}
 /* ---- правки: заголовок календаря — линии сверху/снизу, заглавная "С" бордовым ---- */
 .calendar-head2{margin-bottom:6px}
 .ch-rule{height:1px;background:var(--ink);opacity:.28;width:92%;margin:0 auto}
-.ch-row{display:flex;align-items:baseline;justify-content:center;gap:14px;padding:10px 0;transform:translateX(-10%)}
+.ch-row{display:flex;align-items:baseline;justify-content:center;gap:14px;padding:10px 0;transform:translateX(-15%)}
 .ch-row .ch-month{font-size:28px;letter-spacing:.08em;color:var(--ink)}
 .ch-row .ch-cap{color:var(--red);font-weight:bold}
 .ch-row .ch-num{font-size:52px;color:var(--red);line-height:1}
@@ -129,7 +129,7 @@ opacity:.95}
 .calendar .day.hit{overflow:visible}
 .calendar .day-mark{position:absolute;width:50px;height:50px;object-fit:contain;left:50%;top:50%;transform:translate(-50%,-50%);margin:0;z-index:1}
 .calendar .day.hit{position:relative}
-.calendar .day-num{position:relative;z-index:2;color:#fff;font-weight:bold;text-shadow:0 1px 2px rgba(0,0,0,.35)}
+.calendar .day-num{position:relative;z-index:2;color:var(--ink);font-weight:bold}
 
 /* ---- правки: анкета внутри карточки "Просьба для дорогих гостей" (Глава 5) ---- */
 .rsvp-phrase{text-align:center;font-size:18px;line-height:1.4;margin:6px 0 16px}
@@ -261,7 +261,7 @@ opacity:.95}
   <div class="chapter-title"><div class="chapter-no">10:20 — 23:00</div><h2>Глава 3.</h2><div class="sub sub-highlight">Как всё пройдёт</div></div>
   <div class="timeline">
     <article class="event"><div class="time">10:20</div><div class="dot"></div><div class="copy"><h3>Свадьба</h3><p>Торжественное вступление в законный брак</p><img class="draw-in event-ill" style="top:-52px;bottom:auto;right:0" src="assets/Photo10.png" alt=""></div></article>
-    <article class="event"><div class="time">16:00</div><div class="dot"></div><div class="copy"><h3>Сбор честного народа</h3><p>Начало гуляний</p><img class="draw-in event-ill" style="left:-10px;width:78px" src="assets/Photo11.png" alt=""></div></article>
+    <article class="event"><div class="time">16:00</div><div class="dot"></div><div class="copy"><h3>Сбор честного народа</h3><p>Начало гуляний</p><img class="draw-in event-ill" style="left:-40px;width:78px" src="assets/Photo11.png" alt=""></div></article>
     <article class="event"><div class="time">16:00</div><div class="dot"></div><div class="copy"><h3>Пир на весь мир</h3><p>Время кушаний, тостов душевных,<br>да забав весёлых</p></div></article>
     <article class="event"><div class="time">23:00</div><div class="dot"></div><div class="copy"><h3>Завершение гуляний</h3><p>Чаепитие с русским самоваром,<br>да с пирогами сладкими</p></div><img class="draw-in event-ill" style="bottom:-34px;right:26px;left:auto;width:72px" src="assets/Photo12.png" alt=""></article>
   </div>
@@ -271,6 +271,7 @@ opacity:.95}
 
 <section class="section paper reveal">
   <div class="orn left" style="width:40px"><img class="draw-in" src="assets/Photo14.png" alt=""></div>
+  <div class="orn left" style="width:150px;left:44px;top:32px;opacity:.85"><img class="draw-in" src="assets/Photo9.png" alt=""></div>
   <div class="orn right" style="width:97px"><img class="draw-in" src="assets/Photo15.png" alt=""></div>
   <div class="chapter-title"><h2>Глава 4.</h2><div class="sub">Одежина</div></div>
   <p class="clothes-copy">Молодцы прекрасные да девицы-красавицы, извольте одеяния в стилистике русских нарядов подбирать</p>
@@ -300,7 +301,8 @@ opacity:.95}
       </div>
     </article>
     <article class="gift-card full" id="rsvp" style="position:relative;overflow:hidden">
-      <img class="draw-in" src="assets/Photo20.png" alt="" style="margin-top:-12px">
+      <!-- Photo20 поднят выше: margin-top увеличен с -12px до -26px -->
+      <img class="draw-in" src="assets/Photo20.png" alt="" style="margin-top:-26px">
       <h3>Просьба для дорогих гостей</h3>
       <p class="rsvp-phrase balkara">Дайте знать о вашем решении<br>до 10 сентября 2026 года</p>
       <form class="form" id="rsvpForm" style="padding-top:14px">
@@ -326,9 +328,9 @@ opacity:.95}
 
 <img class="chapter-divider" src="assets/Photo21.png" alt="">
 
-<footer class="footer paper reveal">
-  <img class="draw-in" src="assets/Photo20.png" alt="" style="width:95px;max-height:70px;object-fit:contain;opacity:.8">
-  <img class="draw-in" src="assets/Photo4.png" alt="" style="width:60%;height:auto;display:block;margin:18px auto 0">
+<!-- Photo20 под кнопкой убран; чтобы не пропал отступ до предыдущего блока, добавлен padding-top на футер -->
+<footer class="footer paper reveal" style="padding-top:34px">
+  <img class="draw-in" src="assets/Photo4.png" alt="" style="width:60%;height:auto;display:block;margin:0 auto">
   <div style="margin-top:15px" class="balkara">Дорогие наши гости, просим запомнить дату эту, чтобы мы смогли поделиться с ней с нашим потомством</div>
   <div style="color:var(--red);margin-top:8px;font-size:39px">Александр и Лилия</div>
 </footer>
